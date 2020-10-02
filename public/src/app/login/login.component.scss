@@ -84,7 +84,7 @@
                 background-color: #362946;
             }
             &:nth-child(4) {
-                background-color: #54436b;
+                background-color: #3c2e4f;
             }
 
             .utilities-title {
@@ -142,7 +142,7 @@
 
         .modal-button {
             width: 200px;
-            display: inline-block;
+            display: block;
             font-family: "Lato", Sans-serif;
             font-size: 12px;
             font-weight: 700;
@@ -157,6 +157,7 @@
             border-radius: 3px;
             padding: 21px 50px;
             text-align: center;
+            margin: 0 auto;
 
             &:hover {
                 color: #fff;
