@@ -1,14 +1,39 @@
 <div class="login-component">
-  <div class="welcome-board">
-    Bienvenido a bla bla bla.
+  <div class="carousel">
+    <img src="https://ld-wp73.template-help.com/wordpress/prod_13985/v1/wp-content/uploads/revslider/slider-psy-3.jpg"
+      class="background" />
+    <div class="login-form">
+      <h3>Por favor ingrese en la herramienta para revisar o realizar el reporte de alguna eventualidad con el equipo biomédico con el que se encuentra trabajando.</h3>
+      <button class="login btn" (click)="toggleModal()">INICIAR SESIÓN</button>
+    </div>
   </div>
-  <div class="login-form">
-    <h3>Por favor ingrese en la bla bla bla</h3>
-    <button class="login btn btn-danger">INICIAR SESIÓN</button>
-  </div>
-  <div class="modal">
-    <input placeholder="Usuario" type="text">
-    <input placeholder="Contraseña" type="password">
-    <button class="modal-button">Entrar</button>
+  <ul class="utilities-list">
+    <li class="utilities-item">
+      <h2 class="utilities-title">REPORTE DE INCIDENTE O FALLA</h2>
+      <p class="utilities-description">Llevar la trazabilidad de los equipos médicos con los que cuenta la institución para llevar una vigilancia en la post - adquisición de estos de tal forma que se garantice que los dispositivos médicos en uso son seguros y efectivos.</p>
+    </li>
+    <li class="utilities-item">
+      <h2 class="utilities-title">REGISTRO HISTÓRICO DEL EQUIPO BIOMÉDICO</h2>
+      <p class="utilities-description">Llevar la trazabilidad de los equipos médicos con los que cuenta la institución para llevar una vigilancia en la post - adquisición de estos de tal forma que se garantice que los dispositivos médicos en uso son seguros y efectivos.</p>
+    </li>
+    <li class="utilities-item">
+      <h2 class="utilities-title">REPORTE DE MANTENIMIENTO PREVENTIVO O CORRECTIVO</h2>
+      <p class="utilities-description">El trabajo realizado sobre un equipo o parte para restaurar su estado operacional. No es planificado, se lleva a cabo a partir del reporte que hace el usuario, operador del equipo o personal que realiza el mantenimiento programado.</p>
+    </li>
+    <li class="utilities-item">
+      <h2 class="utilities-title">FORMATO DE RUTINA DE MANTENIMIENTO PREVENTIVO SEGUN FABRICANTE</h2>
+      <p class="utilities-description">El mantenimeinto preventivo es un procedimeinto periodico para reducir el riesgo de fallo y asegurar la continuacia operación de los equipos medicos, logrando asi, aumentar su ciclo de vida util además de garantizar que estos muestren muestras datos confiables y seguros.</p>
+    </li>
+  </ul>
+  <div class="modal {{visible}}">
+    <button class="close" (click)="toggleModal()">
+      <i class="fas fa-times-circle"></i>
+    </button>
+    <div class="modal-content">
+      <h2>Acceder al sistema</h2>
+      <input placeholder="Usuario" type="text">
+      <input placeholder="Contraseña" type="password">
+      <a class="modal-button btn" routerLink="/home">Entrar</a>
+    </div>
   </div>
 </div>

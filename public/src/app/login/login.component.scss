@@ -1,0 +1,167 @@
+.login-component {
+    position: relative;
+    background-image: url();
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    min-height: calc(100vh - 106px);
+    overflow-x: hidden;
+
+    * {
+        position: relative;
+        z-index: 2;
+    }
+
+    .carousel {
+        position: relative;
+        height: 625px;
+        .background {
+            position: absolute;
+            width: 150%;
+            z-index: 1;
+        }
+
+        .login-form {
+            text-align: center;
+            margin: 0 auto;
+            padding: 15% 20vw;
+            box-sizing: border-box;
+            color: #fff;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            h3 {
+                font-size: 24px;
+                font-weight: 400;
+                margin: 20px 0 50px 0;
+            }
+
+            .login {
+                font-family: "Lato", Sans-serif;
+                font-size: 12px;
+                font-weight: 700;
+                text-transform: uppercase;
+                font-style: normal;
+                text-decoration: none;
+                line-height: 1.1em;
+                letter-spacing: 2px;
+                fill: #66a9d8;
+                color: #66a9d8;
+                background-color: #fff;
+                border-radius: 3px;
+                padding: 21px 50px;
+
+                &:hover {
+                    color: #fff;
+                    background-color: #66a9d8;
+                }
+            }
+        }
+    }
+
+    .utilities-list {
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+        width: 100%;
+
+        li {
+            color: #fff;
+            list-style: none;
+            display: block;
+            float: left;
+            width: 25%;
+            box-sizing: border-box;
+            padding: 15px 20px;
+            height: 250px;
+            &:nth-child(1) {
+                background-color: #2a1f36;
+            }
+            &:nth-child(2) {
+                background-color: #30243e;
+            }
+            &:nth-child(3) {
+                background-color: #362946;
+            }
+            &:nth-child(4) {
+                background-color: #54436b;
+            }
+
+            .utilities-title {
+                font-size: 16px;
+                font-weight: bold;
+                white-space: normal;
+                width: 100%;
+            }
+
+            .utilities-description {
+                font-size: 13px;
+                font-weight: 400;
+                white-space: normal;
+                width: 100%;
+                text-align: justify;
+            }
+        }
+    }
+}
+
+.modal {
+    z-index: 6;
+    text-align: center;
+    &.visible {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        width: 50vw;
+        height: 30vh;
+        min-height: 300px;
+        background-color: #fff;
+        margin-top: calc(25vw - 150px);
+        display: inline-block;
+        padding: 50px 50px 30px;
+        text-align: center;
+
+        input {
+            border-radius: 3px;
+            height: 35px;
+            line-height: 35px;
+            display: inline-block;
+            width: 70%;
+            margin: 10px auto;
+            border: solid 1px #a1a1a1;
+            box-sizing: border-box;
+            padding: 3px 10px;
+        }
+
+        .modal-button {
+            width: 200px;
+            display: inline-block;
+            font-family: "Lato", Sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-style: normal;
+            text-decoration: none;
+            line-height: 1.1em;
+            letter-spacing: 2px;
+            fill: #66a9d8;
+            color: #66a9d8;
+            background-color: #fff;
+            border-radius: 3px;
+            padding: 21px 50px;
+            text-align: center;
+
+            &:hover {
+                color: #fff;
+                background-color: #66a9d8;
+            }
+        }
+    }
+}

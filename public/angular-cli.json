@@ -19,6 +19,7 @@
       "prefix": "app",
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "./assets/fontawesome/all.min.css",
         "styles.scss"
       ],
       "scripts": [
