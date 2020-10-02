@@ -1,0 +1,32 @@
+{
+  "name": "sistematrazabilidad",
+  "version": "1.0.0",
+  "description": "Desarrollo software sistema de trazabilidad - Tesis Mayis",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CindyVHO/SistemaTrazabilidad.git"
+  },
+  "keywords": [
+    "Sistema",
+    "Trazabilidad",
+    "Node",
+    "8.11.3"
+  ],
+  "author": "Cindy Hernandez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CindyVHO/SistemaTrazabilidad/issues"
+  },
+  "homepage": "https://github.com/CindyVHO/SistemaTrazabilidad#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "pg": "^8.3.3"
+  }
+}
