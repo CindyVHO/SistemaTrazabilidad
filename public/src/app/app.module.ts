@@ -1,8 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import {
+  MatFormFieldModule,
+  MatMenuModule,
+  MatCheckboxModule,
+  MatIconModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatInputModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -40,10 +49,16 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes,{ useHash: true }),
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
