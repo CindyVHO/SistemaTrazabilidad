@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-historico',
@@ -13,4 +14,7 @@ export class HistoricoComponent implements OnInit {
   ngOnInit() {
   }
 
+  confirm(){
+    swal("Bien hecho!", "El equipo ha sido registrado exitosamente.", "success");
+  }
 }
