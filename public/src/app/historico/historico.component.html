@@ -3,9 +3,9 @@
     REGISTRO HISTÓRICO DEL EQUIPO BIOMÉDICO
   </h2>
   <div class="col-md-9 right-content">
-    <p> 
+    <p>
       REGISTRO HISTÓRICO
-    </p>  
+    </p>
     <p>Información del equipo</p>
     <div class="row">
       <div class="form-group col-md-12">
@@ -67,23 +67,25 @@
     <p>Planos</p>
     <div class="row">
       <div class="custom-control custom-switch col-md-6">
-        <label class="custom-control-label" for="customSwitch1">Eléctricos</label>
         <input type="checkbox" class="custom-control-input" id="electrico" checked="">
+        <label class="custom-control-label" for="electrico">Eléctricos</label>
       </div>
       <div class="custom-control custom-switch col-md-6">
-        <label class="custom-control-label" for="customSwitch1">Electrónicos</label>
         <input type="checkbox" class="custom-control-input" id="electronico" checked="">
+        <label class="custom-control-label" for="electronico">Electrónicos</label>
       </div>
       <div class="custom-control custom-switch col-md-6">
-        <label class="custom-control-label" for="customSwitch1">Hidráulicos</label>
         <input type="checkbox" class="custom-control-input" id="hidraulico" checked="">
+        <label class="custom-control-label" for="hidraulico">Hidráulicos</label>
       </div>
       <div class="custom-control custom-switch col-md-6">
-        <label class="custom-control-label" for="customSwitch1">Neumáticos</label>
         <input type="checkbox" class="custom-control-input" id="neumatico" checked="">
+        <label class="custom-control-label" for="neumatico">Neumáticos</label>
       </div>
     </div>
-    <button type="button" class="btn btn-primary">Guardar cambios</button>
-    <button type="button" class="btn btn-secondary">Regresar a la lista de opciones</button>
+    <div>
+      <button type="button" class="btn btn-primary" (click)="confirm()">Guardar cambios</button>
+      <button type="button" class="btn btn-secondary">Regresar a la lista de opciones</button>
+    </div>
   </div>
 </div>
