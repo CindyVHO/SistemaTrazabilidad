@@ -24,6 +24,16 @@ header {
     padding-top: 65px;
     width: 100%;
     box-sizing: border-box;
+    overflow-x: hidden;
+    padding: 65px 15px 0;
+
+    .left-content {
+        background-color: #393B4C;
+    }
+
+    .right-content {
+        background-color: #EFE4E4;
+    }
 }
 
 footer {
