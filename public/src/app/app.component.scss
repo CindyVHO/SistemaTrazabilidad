@@ -5,15 +5,21 @@ header {
     width: 100%;
     z-index: 5;
     box-sizing: border-box;
-    padding: 17px 50px;
+    padding: 17px 90px;
+    text-align: center;
     * {
         display: inline-block;
         vertical-align: top;
     }
+
+    > img {
+        float: left;
+    }
+
     h1 {
         font-size: 18px;
         font-weight: 400;
-        color: #42474c;
+        color: #545871;
         line-height: 31px;
         padding: 0;
         margin: 0 0 0 60px;
@@ -26,13 +32,34 @@ header {
     box-sizing: border-box;
     overflow-x: hidden;
     padding: 65px 15px 0;
+    
+    .col-form-label {
+        display: block;
+    }
+
+    .subpage {
+        background-color: #545871;
+    }
 
     .left-content {
-        background-color: #393B4C;
+        padding-top: 50%;
+        transform: translateY(-50%);
+        color: #F7EBEB;
     }
 
     .right-content {
-        background-color: #EFE4E4;
+        color: #545871;
+        background-color: #f2f3f8;
+
+        input[type="text"], input[type="number"], input[type="password"], select {
+            padding: 3px 5px;
+            color: #545871;
+            border: solid 1px #545871;
+        }
+
+        input::placeholder{
+            color: #545871;
+        }
     }
 }
 

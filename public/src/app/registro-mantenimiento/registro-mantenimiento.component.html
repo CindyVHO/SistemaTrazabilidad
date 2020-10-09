@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row subpage">
   <h2 class="col-md-3 text-center left-content">
     REPORTE DE MANTENIMIENTO PREVENTIVO O CORRECTIVO
   </h2>
 
-  <div class="col-md-9">
+  <div class="col-md-9 right-content">
     <div class="row">
       <div class="form-group col-md-6">
         <label class="col-form-label">Nombre del ingeniero</label>
@@ -53,21 +53,33 @@
         <label class="col-form-label">Observaciones</label>
         <input type="text" class="form-control" placeholder="Observaciones" id="observaciones">
       </div>
-      <div class="form-group col-md-3">
-        <label class="col-form-label">Fecha</label>
-        <input type="text" class="form-control" placeholder="datepicker" id="fecha">
-      </div>
-      <div class="form-group col-md-3">
-        <label class="col-form-label">Hora inicio</label>
-        <input type="text" class="form-control" placeholder="datepicker" id="inicio">
-      </div>
-      <div class="form-group col-md-3">
-        <label class="col-form-label">Hora final</label>
-        <input type="text" class="form-control" placeholder="datepicker" id="fin">
-      </div>
-      <div class="form-group col-md-3">
-        <label class="col-form-label">Duracion Total</label>
-        <input type="text" class="form-control" placeholder="datepicker" id="duracion" disabled>
+      <div class="time-pickers col-md-12 row">
+        <div class="form-group col-md-3">
+          <mat-form-field class="form-group" appearance="fill">
+            <mat-label>Fecha</mat-label>
+            <input matInput #fecha [matDatepicker]="date" (dateChange)="dateChanged(fecha, $event)">
+            <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+            <mat-datepicker #date></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-3">
+          <mat-form-field class="form-group" appearance="fill">
+            <mat-label>Hora Inicio</mat-label>
+            <input matInput #horaInicio [matDatepicker]="startTime" type="time" placeholder="Hora de Inicio"
+              (dateChange)="initHourChanged(horaInicio, $event)">
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-3">
+          <mat-form-field class="form-group" appearance="fill">
+            <mat-label>Hora Final</mat-label>
+            <input matInput #horaFin [matDatepicker]="endTime" type="time" placeholder="Hora de Fin"
+              (dateChange)="endHourChanged(horaFin, $event)">
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-3">
+          <label class="col-form-label">Duracion Total</label>
+          <input type="text" class="form-control" placeholder="datepicker" id="duracion" disabled>
+        </div>
       </div>
       <div class="form-group col-md-12">
         <label class="col-form-label">Firma Ingeniero</label>

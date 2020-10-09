@@ -2,11 +2,10 @@
   <h2 class="col-md-3 text-center left-content">
     REGISTRO HISTÓRICO DEL EQUIPO BIOMÉDICO
   </h2>
-  <p>
-    REGISTRO HISTÓRICO
-  </p>
-
   <div class="col-md-9 right-content">
+    <p> 
+      REGISTRO HISTÓRICO
+    </p>  
     <p>Información del equipo</p>
     <div class="row">
       <div class="form-group col-md-12">
@@ -48,19 +47,19 @@
     <p>Manuales</p>
     <div class="row">
       <div class="custom-control custom-switch col-md-6">
-        <label class="custom-control-label" for="customSwitch1">Partes</label>
         <input type="checkbox" class="custom-control-input" id="parte" checked="">
+        <label class="custom-control-label" for="parte">Partes</label>
       </div>
       <div class="custom-control custom-switch col-md-6">
-        <label class="custom-control-label" for="customSwitch1">Operación</label>
         <input type="checkbox" class="custom-control-input" id="operacion" checked="">
+        <label class="custom-control-label" for="operacion">Operación</label>
       </div>
       <div class="custom-control custom-switch col-md-6">
-        <label class="custom-control-label" for="customSwitch1">Servicio</label>
         <input type="checkbox" class="custom-control-input" id="servicio" checked="">
+        <label class="custom-control-label" for="servicio">Servicio</label>
       </div>
       <div class="form-group col-md-6">
-        <label class="col-form-label">Otros</label>
+        <label class="col-form-label" for="otro">Otros</label>
         <input type="text" class="form-control"
           placeholder="Agregue detalle de más manuales con los que venga el equipo" id="otro">
       </div>
@@ -84,5 +83,7 @@
         <input type="checkbox" class="custom-control-input" id="neumatico" checked="">
       </div>
     </div>
+    <button type="button" class="btn btn-primary">Guardar cambios</button>
+    <button type="button" class="btn btn-secondary">Regresar a la lista de opciones</button>
   </div>
 </div>
