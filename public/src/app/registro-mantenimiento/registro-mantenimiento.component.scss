@@ -1,0 +1,16 @@
+.registro-mantenimiento {
+    .time-pickers {
+        > div {
+            &.form-group {
+                height: 70px;
+                margin: 0;
+                overflow: hidden;
+            }
+            vertical-align: middle;
+            .mat-form-field{
+                height: 63px;
+                overflow: hidden;
+            }
+        }
+    }
+}
