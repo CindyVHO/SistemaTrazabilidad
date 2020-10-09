@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { RegistroHistoricoComponent } from './registro-historico/registro-historico.component';
 import { RegistroMantenimientoComponent } from './registro-mantenimiento/registro-mantenimiento.component';
 import { ReporteMedicoComponent } from './reporte-medico/reporte-medico.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -39,7 +40,8 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes,{ useHash: true }),
     FormsModule,
-    HttpModule
+    HttpModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
