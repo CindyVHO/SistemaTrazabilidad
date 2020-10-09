@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-registro-mantenimiento',
@@ -23,6 +24,10 @@ export class RegistroMantenimientoComponent implements OnInit {
 
   endHourChanged(horaFin, event) {
     console.log("END HOUR CHANGED", horaFin.value);
+  }
+
+  confirm(){
+    swal("Bien hecho!", "El equipo ha sido registrado exitosamente.", "success");
   }
 
 }
