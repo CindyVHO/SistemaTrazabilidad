@@ -11,6 +11,7 @@ import { HojaVidaEquipoComponent } from './hoja-vida-equipo/hoja-vida-equipo.com
 import { HomeComponent } from './home/home.component';
 import { RegistroHistoricoComponent } from './registro-historico/registro-historico.component';
 import { RegistroMantenimientoComponent } from './registro-mantenimiento/registro-mantenimiento.component';
+import { ReporteMedicoComponent } from './reporte-medico/reporte-medico.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'historico', component: HistoricoComponent },
   { path: 'hoja-de-vida', component: HojaVidaEquipoComponent },
   { path: 'registro-historico', component: RegistroHistoricoComponent },
-  { path: 'registro-mantenimiento', component: RegistroMantenimientoComponent }
+  { path: 'registro-mantenimiento', component: RegistroMantenimientoComponent },
+  { path: 'reporte-medico', component: ReporteMedicoComponent }
 ];
 
 @NgModule({
@@ -31,7 +33,8 @@ const routes: Routes = [
     HojaVidaEquipoComponent,
     HomeComponent,
     RegistroHistoricoComponent,
-    RegistroMantenimientoComponent
+    RegistroMantenimientoComponent,
+    ReporteMedicoComponent
   ],
   imports: [
     BrowserModule,
