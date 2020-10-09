@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-hoja-vida-equipo',
@@ -13,4 +14,7 @@ export class HojaVidaEquipoComponent implements OnInit {
   ngOnInit() {
   }
 
+  confirm(){
+    swal("Bien hecho!", "El equipo ha sido registrado exitosamente.", "success");
+  }
 }
