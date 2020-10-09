@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { FormControl, FormGroup} from '@angular/forms';
 import swal from 'sweetalert';
 
 @Component({
