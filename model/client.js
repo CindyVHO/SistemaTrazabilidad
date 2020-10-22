@@ -5,28 +5,27 @@ const connection = (()=>{
     const client = new Client({
         user: 'postgres',
         host: 'localhost',
-        database: 'public',
+        database: 'postgres',
         password: 'admin',
         port: 5432
     });
 
     function sqlQuery(query){
-        return new Promise((resolve, reject)=>{
+        return new Promise(async (resolve, reject)=>{
             try{
-                client.connect();
-                client.query(query, (err, res)=>{
-                    client.end();
-                    if(err) {
-                        reject(err);
-                        return;
-                    }
-                    resolve(res);
-                });
+                await client.connect();
             } catch(err) {
-                reject(err);
+                console.error("CLIENT ALREADY CONNECTED");
             }
+            client.query(query, (err, res)=>{
+                if(err) {
+                    reject(err);
+                }
+                resolve(res);
+            });
         });
     }
+
     return {
         sqlQuery: sqlQuery
     }
