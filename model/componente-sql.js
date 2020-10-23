@@ -1,13 +1,14 @@
 const connection = require('./client');
 const uuid = require('uuid');
+const rutina = require('./rutina-sql');
 
 const componente = (() => {
     const createTable = 'CREATE TABLE IF NOT EXISTS componente (' +
         'idcomponente uuid DEFAULT PRIMARY KEY, ' +
+        'rutina uuid NOT NULL, ' +
         'componente VARCHAR NOT NULL, ' +
-        'funcionamiento BOOLEAN NOT NULL, ' +        
+        'funcionamiento BOOLEAN NOT NULL, ' +
         'observaciones VARCHAR NOT NULL, ' +
-        'FOREIGN KEY (rutina) REFERENCES rutina (idrutina)' +
         ');';
 
     function validateExists() {
@@ -28,6 +29,7 @@ const componente = (() => {
                     text: sqlQuery,
                     values: [
                         uuid.v1(),
+                        componente.rutina.idrutina,
                         componente.componente,
                         componente.funcionamiento,
                         componente.observaciones,
