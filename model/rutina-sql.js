@@ -25,6 +25,17 @@ const rutina = (() => {
         });
     }
 
+    function getRutinaById(id) {
+        return new Promise((resolve, reject) => {
+            const sqlQuery = `SELECT * FROM rutina WHERE idrutina = ${id};`;
+            connection.sqlQuery(sqlQuery).then((res) => {
+                resolve(res);
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+    }
+
     function insertRutina(rutina) {
         return new Promise((resolve, reject) => {
             validateExists().then(() => {
@@ -58,7 +69,8 @@ const rutina = (() => {
     }
 
     return {
-        insertRutina: insertRutina
+        insertRutina: insertRutina,
+        getRutinaById: getRutinaById
     }
 
 })();
