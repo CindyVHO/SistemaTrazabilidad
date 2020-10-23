@@ -31,7 +31,7 @@ const mantenimiento = (() => {
     function insertMantenimiento(mantenimiento) {
         return new Promise((resolve, reject) => {
             validateExists().then(() => {
-                let sqlQuery = 'INSERT INTO mantenimientos VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING idmantenimiento';
+                let sqlQuery = 'INSERT INTO mantenimiento VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING idmantenimiento';
                 let query = {
                     text: sqlQuery,
                     values: [
