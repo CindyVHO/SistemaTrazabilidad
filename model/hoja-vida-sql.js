@@ -4,6 +4,7 @@ const uuid = require('uuid');
 const hojaVida = (() => {
     const createTable = 'CREATE TABLE IF NOT EXISTS hoja_vida (' +
         'idhojavida uuid DEFAULT PRIMARY KEY, ' +
+        'equipo uuid NOT NULL, ' +
         'tipo_riesgo VARCHAR NOT NULL, ' +
         'tipo_funcion VARCHAR NOT NULL, ' +
         'voltaje_maximo DECIMAL NOT NULL, ' +
@@ -18,8 +19,7 @@ const hojaVida = (() => {
         'presion DECIMAL NOT NULL, ' +
         'alimentacion VARCHAR NOT NULL, ' +
         'adquisicion VARCHAR NOT NULL, ' +
-        'uso VARCHAR NOT NULL, ' +
-        'FOREIGN KEY (equipo) REFERENCES equipo (idequipo)' +
+        'uso VARCHAR NOT NULL ' +
         ');';
 
     function validateExists() {

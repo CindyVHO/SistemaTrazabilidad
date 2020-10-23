@@ -4,6 +4,8 @@ const uuid = require('uuid');
 const mantenimiento = (() => {
     const createTable = 'CREATE TABLE IF NOT EXISTS mantenimiento (' +
         'idmantenimiento uuid DEFAULT PRIMARY KEY, ' +
+        'user uuid NOT NULL, ' +
+        'equipo uuid NOT NULL, ' +
         'ubicacion_equipo VARCHAR NOT NULL, ' +
         'tipo_mantenimiento VARCHAR NOT NULL, ' +
         'material VARCHAR NOT NULL, ' +
@@ -13,9 +15,7 @@ const mantenimiento = (() => {
         'fecha TIMESTAMP NOT NULL, ' +
         'hora_inicio TIMESTAMP NOT NULL, ' +
         'hora_fin TIMESTAMP NOT NULL, ' +
-        'firma VARCHAR NOT NULL, ' +
-        'FOREIGN KEY (user) REFERENCES user (iduser)' +
-        'FOREIGN KEY (equipo) REFERENCES equipo (idequipo)' +
+        'firma VARCHAR NOT NULL ' +
         ');';
 
     function validateExists() {
