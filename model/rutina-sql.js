@@ -4,15 +4,15 @@ const uuid = require('uuid');
 const rutina = (() => {
     const createTable = 'CREATE TABLE IF NOT EXISTS rutina (' +
         'idrutina uuid DEFAULT PRIMARY KEY, ' +
+        'user uuid NOT NULL, ' +
+        'equipo uuid NOT NULL, ' +
         'fecha_inspeccion TIMESTAMP NOT NULL, ' +
         'fecha_periodicidad TIMESTAMP NOT NULL, ' +
         'valor_patron VARCHAR NOT NULL, ' +
         'valor_medido VARCHAR NOT NULL, ' +
         'equipo_apto_uso BOOLEAN NOT NULL, ' +
         'observacion VARCHAR NOT NULL, ' +
-        'firma VARCHAR NOT NULL, ' +
-        'FOREIGN KEY (user) REFERENCES user (iduser)' +
-        'FOREIGN KEY (equipo) REFERENCES equipo (idequipo)' +
+        'firma VARCHAR NOT NULL ' +
         ');';
 
     function validateExists() {

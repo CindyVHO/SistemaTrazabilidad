@@ -4,11 +4,11 @@ const uuid = require('uuid');
 const error = (() => {
     const createTable = 'CREATE TABLE IF NOT EXISTS error (' +
         'iderror uuid DEFAULT PRIMARY KEY, ' +
+        'user uuid NOT NULL, ' +
+        'equipo uuid NOT NULL, ' +
         'observaciones VARCHAR NOT NULL, ' +
         'fecha_reporte TIMESTAMP NOT NULL, ' +
-        'hora_reporte TIMESTAMP NOT NULL, ' +
-        'FOREIGN KEY (user) REFERENCES user (iduser)' +
-        'FOREIGN KEY (equipo) REFERENCES equipo (idequipo)' +
+        'hora_reporte TIMESTAMP NOT NULL' +
         ');';
 
     function validateExists() {
