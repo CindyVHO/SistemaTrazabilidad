@@ -30,4 +30,34 @@ router.post('/componente', (req, res) => {
     });
 });
 
+router.post('/error', (req, res) => {
+    var errorIntro = req.body;
+    error.insertError(errorIntro).then((response)=>{
+        res.json({id:response.rows[0].iderror});
+    }).catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
+});
+
+router.post('/hojaVida', (req, res) => {
+    var hojaVidaIntro = req.body;
+    hojaVida.insertHojaVidar(hojaVidaIntro).then((response)=>{
+        res.json({id:response.rows[0].idhojavida});
+    }).catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
+});
+
+router.post('/mantenimiento', (req, res) => {
+    var hojaVidaIntro = req.body;
+    mantenimiento.insertHojaVidar(mantenimientoIntro).then((response)=>{
+        res.json({id:response.rows[0].idmantenimiento});
+    }).catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
+});
+
 module.exports = router;
