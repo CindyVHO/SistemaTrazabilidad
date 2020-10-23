@@ -14,6 +14,10 @@ export class HojaVidaEquipoComponent implements OnInit {
   ngOnInit() {
   }
 
+  dateChanged(fecha, event) {
+    console.log("DATE CHANGED", fecha.value);
+  }
+
   confirm(){
     swal("Bien hecho!", "El equipo ha sido registrado exitosamente.", "success");
   }

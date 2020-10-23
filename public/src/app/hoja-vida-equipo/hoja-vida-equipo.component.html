@@ -100,13 +100,23 @@
           <option value="C">Comodato</option>
         </select>
       </div>
-      <div class="form-group col-md-6">
-        <label class="col-form-label">Fecha de instalación</label>
-        <input type="text" class="form-control" placeholder="Date" id="fechaInstalacion">
-      </div>
-      <div class="form-group col-md-6">
-        <label class="col-form-label">Espiración de garantía</label>
-        <input type="text" class="form-control" placeholder="Date" id="garantia">
+      <div class="time-pickers col-md-12 row">
+        <div class="form-group col-md-6">
+          <mat-form-field class="form-group" appearance="fill">
+            <mat-label>Fecha de instalación</mat-label>
+            <input matInput #fecha [matDatepicker]="date" (dateChange)="dateChanged(fecha, $event)">
+            <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+            <mat-datepicker #date></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-6">
+          <mat-form-field class="form-group" appearance="fill">
+            <mat-label>Expiración de garantía</mat-label>
+            <input matInput #fecha [matDatepicker]="date" (dateChange)="dateChanged(fecha, $event)">
+            <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+            <mat-datepicker #date></mat-datepicker>
+          </mat-form-field>
+        </div>
       </div>
       <div class="form-group col-md-6">
         <label class="form-control-label">¿Equipo fijo?</label>
