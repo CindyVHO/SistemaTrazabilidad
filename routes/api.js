@@ -60,4 +60,34 @@ router.post('/mantenimiento', (req, res) => {
     });
 });
 
+router.post('/rol', (req, res) => {
+    var rolIntro = req.body;
+    rol.insertRol(rolIntro).then((response)=>{
+        res.json({id:response.rows[0].idrol});
+    }).catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
+});
+
+router.post('/rutina', (req, res) => {
+    var rutinaIntro = req.body;
+    rutina.insertRutina(rutinaIntro).then((response)=>{
+        res.json({id:response.rows[0].idrutina});
+    }).catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
+});
+
+router.post('/user', (req, res) => {
+    var userIntro = req.body;
+    user.insertUser(userIntro).then((response)=>{
+        res.json({id:response.rows[0].iduser});
+    }).catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
+});
+
 module.exports = router;
