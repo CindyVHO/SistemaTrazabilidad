@@ -37,8 +37,15 @@ header {
         display: block;
     }
 
-    .subpage {
+    .subpage{
         background-color: #545871;
+
+        &:not(.no-scroll) {
+            max-height: calc(100vh - 205px);
+            .right-content {
+                max-height: calc(100vh - 205px);
+            }
+        }
     }
 
     .left-content {
