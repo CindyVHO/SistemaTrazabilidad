@@ -1,0 +1,22 @@
+<div class="reporte-medico-visual table-striped">
+  <table class="table">
+    <thead class="thead-dark">
+      <th scope="col">Nombre del equipo</th>
+      <th scope="col">Código del equipo</th>
+      <th scope="col">Observaciones</th>
+      <th scope="col" aria-label="Nombre del médico o auxiliar que reporta">Nombre reporta</th>
+      <th scope="col">Fecha del reporte</th>
+      <th scope="col">Hora del reporte</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of reportes">
+        <td>{{item.equipo.nombre}}</td>
+        <td>{{item.equipo.codigo}}</td>
+        <td>{{item.observaciones}}</td>
+        <td>{{item.user.name}}</td>
+        <td>{{item.fechaReporte}}</td>
+        <td>{{item.horaReporte}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

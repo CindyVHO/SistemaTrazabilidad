@@ -1,0 +1,24 @@
+<div class="listar-equipos table-striped">
+  <table class="table">
+    <thead class="thead-dark">
+      <th scope="col">Nombre del equipo</th>
+      <th scope="col">Código del equipo</th>
+      <th scope="col">Serie</th>
+      <th scope="col">Marca</th>
+      <th scope="col">Modelo</th>
+      <th scope="col">Alerta</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let equipo of equipos">
+        <td>{{equipo.nombre}}</td>
+        <td>{{equipo.codigo}}</td>
+        <td>{{equipo.serie}}</td>
+        <td>{{equipo.marca}}</td>
+        <td>{{equipo.modelo}}</td>
+        <td>
+          <i class="fas fa-lightbulb red-alert"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
