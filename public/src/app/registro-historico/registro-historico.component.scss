@@ -7,7 +7,12 @@
             text-align: center;
             cursor: pointer;
             padding: 25px 0 0 0;
-            border-radius: 20px;;
+            border-radius: 20px;
+            
+            &:hover {
+                background-color: #2A1F36;
+            }
+
             .fas {
                 font-size: 6rem;
             }
