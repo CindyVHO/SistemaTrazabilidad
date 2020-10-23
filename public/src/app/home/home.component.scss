@@ -1,4 +1,36 @@
 .home {
     min-height: calc(100vh - 205px);
     max-height: calc(100vh - 205px);
+
+    .container {
+        .card {
+            border-radius: 20px;
+            text-align: center;
+            
+            &:hover {
+                background-color: #2A1F36;
+                color: #FFF;
+                .fas {
+                    height: 0;
+                }
+                .card-text {
+                    height: 150px;
+                }
+            }
+            .fas {
+                transition: height ease-in-out 1s;
+                height: 97px;
+                overflow: hidden;
+                font-size: 6rem;
+            }
+            .card-text {
+                transition: height ease-in-out 1s;
+                height: 0px;
+                overflow: hidden;
+            }
+            .card-title {
+                text-align: center;
+            }
+        }
+    }
 }
