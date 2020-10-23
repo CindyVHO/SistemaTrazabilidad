@@ -42,7 +42,7 @@ router.post('/error', (req, res) => {
 
 router.post('/hojaVida', (req, res) => {
     var hojaVidaIntro = req.body;
-    hojaVida.insertHojaVidar(hojaVidaIntro).then((response)=>{
+    hojaVida.insertHojaVida(hojaVidaIntro).then((response)=>{
         res.json({id:response.rows[0].idhojavida});
     }).catch((err)=>{
         res.status(500);
@@ -51,8 +51,8 @@ router.post('/hojaVida', (req, res) => {
 });
 
 router.post('/mantenimiento', (req, res) => {
-    var hojaVidaIntro = req.body;
-    mantenimiento.insertHojaVidar(mantenimientoIntro).then((response)=>{
+    var mantenimientoIntro = req.body;
+    mantenimiento.insertMantenimiento(mantenimientoIntro).then((response)=>{
         res.json({id:response.rows[0].idmantenimiento});
     }).catch((err)=>{
         res.status(500);
