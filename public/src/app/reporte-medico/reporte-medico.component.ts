@@ -97,7 +97,7 @@ export class ReporteMedicoComponent implements OnInit {
       this.reporte.fecha_reporte = this.formatDate();
       this.reporteService.addReporte(this.reporte).subscribe(reporte => {
         swal("REPORTE AGREGADO CORRECTAMENTE", reporte.id ,"success");
-      });;
+      });
     }
     
   }
