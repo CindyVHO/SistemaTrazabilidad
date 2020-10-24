@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
 import swal from 'sweetalert';
 import { ReporteMedicoService } from './reporte-medico.service';
+import { HistoricoService } from '../historico/historico.service';
 
 @Component({
   selector: 'app-reporte-medico',
@@ -11,6 +12,7 @@ import { ReporteMedicoService } from './reporte-medico.service';
 })
 export class ReporteMedicoComponent implements OnInit {
 
+  equipos: any;
   reporte: any;
   fechaReporte = new Date();
   public form: FormGroup = new FormGroup({
@@ -21,9 +23,17 @@ export class ReporteMedicoComponent implements OnInit {
   horaInicial;
   horaFinal;
   
-  constructor(private reporteService: ReporteMedicoService) { }
+  constructor(private reporteService: ReporteMedicoService, private historicoService: HistoricoService) { }
 
   ngOnInit() {
+    this.getEquipos();
+  }
+
+  getEquipos() {
+    this.historicoService.getEquipos()
+    .subscribe(equipos => {
+      this.equipos = equipos;
+    });
   }
 
   updateHoraTotal() {
