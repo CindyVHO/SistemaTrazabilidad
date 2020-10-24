@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
 import swal from 'sweetalert';
+import { RegistroMantenimientoService } from './registro-mantenimiento.service';
+import { HistoricoService } from '../historico/historico.service';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-registro-mantenimiento',
@@ -10,6 +13,11 @@ import swal from 'sweetalert';
 })
 export class RegistroMantenimientoComponent implements OnInit {
   nombreIngeniero:String = "";
+  roles: any = {};
+  usuarioSeleccionado: any;
+  ingenieros: any;
+  myControl = new FormControl();
+
   public form: FormGroup = new FormGroup({
     calculatedTime: new FormControl(''),
   });
@@ -18,7 +26,9 @@ export class RegistroMantenimientoComponent implements OnInit {
   horaInicial;
   horaFinal;
 
-  constructor() { }
+  constructor(private registroMantenimientoService: RegistroMantenimientoService,
+    private historicoService: HistoricoService,
+    private loginService: LoginService) { }
 
   ngOnInit() {
   }
@@ -56,6 +66,28 @@ export class RegistroMantenimientoComponent implements OnInit {
     this.horaFinal = horaFin.value;
     this.updateHoraTotal();
   }
+
+  async getRoles() {
+    return this.loginService.getRoles()
+    .toPromise().then(roles => {
+        this.roles = (<any>roles).roles;
+    });
+  }
+
+  async getIngeniero() {
+    await this.getRoles();
+    const rolIngeniero = this.roles.filter((rol)=>{
+      return rol.rol === "IngenieroBiomedico";
+    })[0];
+
+    this.loginService.getUsers()
+    .subscribe(usuarios => {
+      this.ingenieros = (<any>usuarios).users.filter((user)=>{
+        return user.rol === rolIngeniero.idrol;
+      });
+    });
+  }
+
 
   confirm(){
     swal("Bien hecho!", "El equipo ha sido registrado exitosamente.", "success");

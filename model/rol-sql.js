@@ -44,7 +44,7 @@ const rol = (() => {
         return new Promise((resolve, reject) => {
             console.log("CREANDO TABLA")
             connection.sqlQuery(createTable).then(() => {
-                console.log("CREANDO TABLA FINALIZADO EXIGTO")
+                console.log("CREANDO TABLA FINALIZADO EXITO")
                 resolve();
             }).catch((err) => {
                 console.log("CREANDO TABLA FINALIZADO ERROR", err);
@@ -68,6 +68,7 @@ const rol = (() => {
                 connection.sqlQuery(query).then((res) => {
                     resolve(res);
                 }).catch((err) => {
+                    console.log("Erorr Insert: " + err);
                     reject(err);
                 });
             }).catch((err)=>{
