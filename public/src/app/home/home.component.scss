@@ -6,6 +6,13 @@
         .card {
             border-radius: 20px;
             text-align: center;
+            * {
+                text-decoration: none;
+                color: inherit;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
             
             &:hover {
                 background-color: #2A1F36;
@@ -14,7 +21,7 @@
                     height: 0;
                 }
                 .card-text {
-                    height: 150px;
+                    height: 135px;
                 }
             }
             .fas {
@@ -27,6 +34,7 @@
                 transition: height ease-in-out 1s;
                 height: 0px;
                 overflow: hidden;
+                font-size: 14px;
             }
             .card-title {
                 text-align: center;

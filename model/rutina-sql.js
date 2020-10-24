@@ -2,10 +2,10 @@ const connection = require('./client');
 const uuid = require('uuid');
 
 const rutina = (() => {
-    const createTable = 'CREATE TABLE IF NOT EXISTS rutina (' +
-        'idrutina uuid DEFAULT PRIMARY KEY, ' +
-        'user uuid NOT NULL, ' +
-        'equipo uuid NOT NULL, ' +
+    const createTable = 'CREATE TABLE IF NOT EXISTS rutinaMantenimiento (' +
+        'idrutina uuid PRIMARY KEY, ' +
+        'userid uuid NOT NULL, ' +
+        'equipoid uuid NOT NULL, ' +
         'fecha_inspeccion TIMESTAMP NOT NULL, ' +
         'fecha_periodicidad TIMESTAMP NOT NULL, ' +
         'valor_patron VARCHAR NOT NULL, ' +
@@ -17,19 +17,30 @@ const rutina = (() => {
 
     function validateExists() {
         return new Promise((resolve, reject) => {
-            connection.sqlQuery(createTable).then(() => {
-                resolve();
+            connection.sqlQuery(createTable).then((res) => {
+                resolve(res);
             }).catch((err) => {
-                reject();
+                reject(err);
             });
         });
     }
 
     function getRutinaById(id) {
         return new Promise((resolve, reject) => {
-            const sqlQuery = `SELECT * FROM rutina WHERE idrutina = ${id};`;
+            const sqlQuery = `SELECT * FROM rutinaMantenimiento WHERE idrutina = ${id};`;
             connection.sqlQuery(sqlQuery).then((res) => {
-                resolve(res);
+                resolve(res.rows);
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+    }
+
+    function getAllRutinas() {
+        return new Promise((resolve, reject) => {
+            const sqlQuery = `SELECT * FROM rutinaMantenimiento;`;
+            connection.sqlQuery(sqlQuery).then((res) => {
+                resolve(res.rows);
             }).catch((err) => {
                 reject(err);
             });
@@ -39,20 +50,20 @@ const rutina = (() => {
     function insertRutina(rutina) {
         return new Promise((resolve, reject) => {
             validateExists().then(() => {
-                let sqlQuery = 'INSERT INTO rutina VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING idrutina';
+                let sqlQuery = 'INSERT INTO rutinaMantenimiento VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING idrutina';
                 let query = {
                     text: sqlQuery,
                     values: [
                         uuid.v1(),
+                        rutina.userid,
+                        rutina.equipoid,
                         rutina.fecha_inspeccion,
-                        equipo.fecha_periodicidad,
-                        equipo.valor_patron,
-                        equipo.valor_medido,
-                        equipo.equipo_apto_uso,
-                        equipo.observacion,
-                        equipo.firma,
-                        equipo.user,
-                        equipo.equipo
+                        rutina.fecha_periodicidad,
+                        rutina.valor_patron,
+                        rutina.valor_medido,
+                        rutina.equipo_apto_uso,
+                        rutina.observacion,
+                        rutina.firma
                     ]
                 };
 
@@ -70,7 +81,8 @@ const rutina = (() => {
 
     return {
         insertRutina: insertRutina,
-        getRutinaById: getRutinaById
+        getRutinaById: getRutinaById,
+        getAllRutinas: getAllRutinas
     }
 
 })();

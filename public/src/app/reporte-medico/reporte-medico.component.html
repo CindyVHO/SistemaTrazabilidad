@@ -1,4 +1,4 @@
-<div class="row subpage">
+<div class="row subpage reporte-medico">
   <h2 class="col-md-3 text-center left-content">
     REPORTE DE INCIDENTE
   </h2>
@@ -7,11 +7,13 @@
     <div class="row">
       <div class="form-group col-md-6">
         <label class="col-form-label">Nombre del equipo</label>
-        <input type="text" class="form-control" placeholder="Nombre del equipo" id="nombre">
+        <select class="form-control">
+          <option value="0">Nombre del equipo</option>
+        </select>
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Código del equipo</label>
-        <input type="text" class="form-control" placeholder="Codigo del equipo" id="codigo">
+        <input disabled type="text" class="form-control" placeholder="Codigo del equipo" id="codigo">
       </div>
       <div class="form-group col-md-12">
         <label class="col-form-label">Observación</label>
@@ -23,22 +25,15 @@
       </div>
       <div class="time-pickers col-md-12 row">
         <div class="form-group col-md-6">
-          <mat-form-field class="form-group" appearance="fill">
-            <mat-label>Fecha del reporte</mat-label>
-            <input matInput #fecha [matDatepicker]="date" (dateChange)="dateChanged(fecha, $event)">
-            <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-            <mat-datepicker #date></mat-datepicker>
-          </mat-form-field>
+          <label class="col-form-label" for="fechaReporte">Fecha del reporte</label>
+          <input disabled type="text" [ngModel]="fechaReporte | date:'dd-MM-yyyy'" (ngModelChange)="fechaReporte=$event" class="form-control" placeholder="Fecha del reporte" id="fechaReporte">
         </div>
         <div class="form-group col-md-6">
-          <mat-form-field class="form-group" appearance="fill">
-            <mat-label>Hora del reporte</mat-label>
-            <input matInput #horaInicio [matDatepicker]="startTime" type="time" placeholder="Hora de Inicio"
-              (dateChange)="initHourChanged(horaInicio, $event)">
-          </mat-form-field>
+          <label class="col-form-label" for="horaReporte">Hora del reporte</label>
+          <input disabled type="text" [ngModel]="fechaReporte | date:'HH:mm:ss'" (ngModelChange)="fechaReporte=$event" class="form-control" placeholder="Hora del reporte" id="horaReporte">
         </div>
       </div>
-      <div>
+      <div class="col-md-12 button-wrapper">
         <button type="button" class="btn btn-primary" (click)="confirm()">Guardar cambios</button>
         <button type="button" class="btn btn-secondary">Regresar a la lista de opciones</button>
       </div>

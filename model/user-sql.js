@@ -2,8 +2,8 @@ const connection = require('./client');
 const uuid = require('uuid');
 
 const user = (() => {
-    const createTable = 'CREATE TABLE IF NOT EXISTS user (' +
-        'iduser uuid DEFAULT PRIMARY KEY, ' +
+    const createTable = 'CREATE TABLE IF NOT EXISTS users (' +
+        'iduser uuid PRIMARY KEY, ' +
         'rol uuid NOT NULL, ' +
         'name VARCHAR NOT NULL, ' +
         'lastname VARCHAR NOT NULL, ' +
@@ -20,18 +20,40 @@ const user = (() => {
         });
     }
 
+    function getUserById(id) {
+        return new Promise((resolve, reject) => {
+            let sqlQuery = `SELECT * FROM users WHERE iduser='${id}'`;
+            connection.sqlQuery(sqlQuery).then((result)=>{
+                resolve(result.rows);
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+    }
+
+    function getAllUsers() {
+        return new Promise((resolve, reject) => {
+            let sqlQuery = `SELECT * FROM users`;
+            connection.sqlQuery(sqlQuery).then((result)=>{
+                resolve(result.rows);
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+    }
+
     function insertUser(user) {
         return new Promise((resolve, reject) => {
             validateExists().then(() => {
-                let sqlQuery = 'INSERT INTO user VALUES ($1,$2,$3,$4,$5) RETURNING iduser';
+                let sqlQuery = 'INSERT INTO users VALUES ($1,$2,$3,$4,$5) RETURNING iduser';
                 let query = {
                     text: sqlQuery,
                     values: [
                         uuid.v1(),
+                        user.rol,
                         user.name,
                         user.lastname,
-                        user.especialidad,
-                        user.rol
+                        user.especialidad
                     ]
                 };
 
@@ -48,7 +70,9 @@ const user = (() => {
     }
 
     return {
-        insertUser: insertUser
+        insertUser: insertUser,
+        getAllUsers: getAllUsers,
+        getUserById: getUserById
     }
 
 })();

@@ -10,6 +10,7 @@ import swal from 'sweetalert';
 })
 export class ReporteMedicoComponent implements OnInit {
 
+  fechaReporte = new Date();
   public form: FormGroup = new FormGroup({
     calculatedTime: new FormControl(''),
   });

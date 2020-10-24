@@ -2,21 +2,43 @@ const connection = require('./client');
 const uuid = require('uuid');
 
 const error = (() => {
-    const createTable = 'CREATE TABLE IF NOT EXISTS error (' +
-        'iderror uuid DEFAULT PRIMARY KEY, ' +
-        'user uuid NOT NULL, ' +
-        'equipo uuid NOT NULL, ' +
+    const createTable = 'CREATE TABLE IF NOT EXISTS errores (' +
+        'iderror uuid PRIMARY KEY, ' +
+        'userid uuid NOT NULL, ' +
+        'equipoid uuid NOT NULL, ' +
         'observaciones VARCHAR NOT NULL, ' +
-        'fecha_reporte TIMESTAMP NOT NULL, ' +
-        'hora_reporte TIMESTAMP NOT NULL' +
+        'fecha_reporte TIMESTAMP NOT NULL' +
         ');';
+
+        function getErrorById(id) {
+            return new Promise((resolve, reject) => {
+                let sqlQuery = `SELECT * FROM errores WHERE iderror='${id}'`;
+                connection.sqlQuery(sqlQuery).then((result)=>{
+                    resolve(result.rows);
+                }).catch((err) => {
+                    reject(err);
+                });
+            });
+        }
+    
+        function getAllErrores() {
+            return new Promise((resolve, reject) => {
+                let sqlQuery = `SELECT * FROM errores`;
+                connection.sqlQuery(sqlQuery).then((result)=>{
+                    resolve(result.rows);
+                }).catch((err) => {
+                    reject(err);
+                });
+            });
+        }
 
     function validateExists() {
         return new Promise((resolve, reject) => {
-            connection.sqlQuery(createTable).then(() => {
-                resolve();
+            connection.sqlQuery(createTable).then((res) => {
+                resolve(res);
             }).catch((err) => {
-                reject();
+                console.log("ERROR TABLA", err);
+                reject(err);
             });
         });
     }
@@ -24,16 +46,15 @@ const error = (() => {
     function insertError(error) {
         return new Promise((resolve, reject) => {
             validateExists().then(() => {
-                let sqlQuery = 'INSERT INTO error VALUES ($1,$2,$3,$4,$5,$6) RETURNING iderror';
+                let sqlQuery = 'INSERT INTO errores VALUES ($1,$2,$3,$4,$5) RETURNING iderror';
                 let query = {
                     text: sqlQuery,
                     values: [
                         uuid.v1(),
+                        error.userid,
+                        error.equipoid,
                         error.observaciones,
-                        error.fecha_reporte,
-                        error.hora_reporte,
-                        error.user,
-                        error.equipo
+                        error.fecha_reporte
                     ]
                 };
 
@@ -50,7 +71,9 @@ const error = (() => {
     }
 
     return {
-        insertError: insertError
+        insertError: insertError,
+        getErrorById: getErrorById,
+        getAllErrores: getAllErrores
     }
 
 })();

@@ -1,4 +1,4 @@
-<div class="row subpage no-scroll">
+<div class="row subpage no-scroll hoja-vida-equipo">
   <h2 class="col-md-3 text-center left-content">
     HOJA DE VIDA DEL EQUIPO BIOMÉDICO
   </h2>
@@ -104,7 +104,7 @@
         <div class="form-group col-md-6">
           <mat-form-field class="form-group" appearance="fill">
             <mat-label>Fecha de instalación</mat-label>
-            <input matInput #fecha [matDatepicker]="date" (dateChange)="dateChanged(fecha, $event)">
+            <input matInput #date [matDatepicker]="date" (dateChange)="dateChanged(fecha, $event)">
             <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
             <mat-datepicker #date></mat-datepicker>
           </mat-form-field>
@@ -112,9 +112,9 @@
         <div class="form-group col-md-6">
           <mat-form-field class="form-group" appearance="fill">
             <mat-label>Expiración de garantía</mat-label>
-            <input matInput #fecha [matDatepicker]="date" (dateChange)="dateChanged(fecha, $event)">
-            <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-            <mat-datepicker #date></mat-datepicker>
+            <input matInput #fecha [matDatepicker]="fecha" (dateChange)="dateChanged(fecha, $event)">
+            <mat-datepicker-toggle matSuffix [for]="fecha"></mat-datepicker-toggle>
+            <mat-datepicker #fecha></mat-datepicker>
           </mat-form-field>
         </div>
       </div>
@@ -148,7 +148,7 @@
           <option value="No">Otros</option>
         </select>
       </div>
-      <div>
+      <div class="col-md-12 button-wrapper">
         <button type="button" class="btn btn-primary" (click)="confirm()">Guardar cambios</button>
         <button type="button" class="btn btn-secondary">Regresar a la lista de opciones</button>
       </div>

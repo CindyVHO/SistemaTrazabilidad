@@ -34,6 +34,28 @@ const equipo = (() => {
         });
     }
 
+    function queryAll() {
+        return new Promise((resolve, reject) => {
+            let sqlQuery = `SELECT * FROM equipos`;
+            connection.sqlQuery(sqlQuery).then((result)=>{
+                resolve(result.rows);
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+    }
+
+    function queryEquipoById(id) {
+        return new Promise((resolve, reject) => {
+            let sqlQuery = `SELECT * FROM equipos WHERE idequipo='${id}'`;
+            connection.sqlQuery(sqlQuery).then((result)=>{
+                resolve(result.rows);
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+    }
+
     function insertEquipo(equipo) {
         return new Promise((resolve, reject) => {
             validateExists().then(() => {
@@ -76,7 +98,9 @@ const equipo = (() => {
     }
 
     return {
-        insertEquipo: insertEquipo
+        insertEquipo: insertEquipo,
+        queryEquipoById: queryEquipoById,
+        queryAll: queryAll
     }
 
 })();

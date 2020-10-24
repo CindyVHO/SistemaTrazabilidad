@@ -9,6 +9,7 @@ import swal from 'sweetalert';
   encapsulation: ViewEncapsulation.None
 })
 export class RegistroMantenimientoComponent implements OnInit {
+  nombreIngeniero:String = "";
   public form: FormGroup = new FormGroup({
     calculatedTime: new FormControl(''),
   });

@@ -2,8 +2,8 @@ const connection = require('./client');
 const uuid = require('uuid');
 
 const hojaVida = (() => {
-    const createTable = 'CREATE TABLE IF NOT EXISTS hoja_vida (' +
-        'idhojavida uuid DEFAULT PRIMARY KEY, ' +
+    const createTable = 'CREATE TABLE IF NOT EXISTS hojas_de_vida (' +
+        'idhojavida uuid PRIMARY KEY, ' +
         'equipo uuid NOT NULL, ' +
         'tipo_riesgo VARCHAR NOT NULL, ' +
         'tipo_funcion VARCHAR NOT NULL, ' +
@@ -24,10 +24,32 @@ const hojaVida = (() => {
 
     function validateExists() {
         return new Promise((resolve, reject) => {
-            connection.sqlQuery(createTable).then(() => {
-                resolve();
+            connection.sqlQuery(createTable).then((res) => {
+                resolve(res);
             }).catch((err) => {
-                reject();
+                reject(err);
+            });
+        });
+    }
+
+    function getAll(id) {
+        return new Promise((resolve, reject) => {
+            let sqlQuery = `SELECT * FROM hojas_de_vida`;
+            connection.sqlQuery(sqlQuery).then((result)=>{
+                resolve(result.rows);
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+    }
+
+    function getHVbyID(id) {
+        return new Promise((resolve, reject) => {
+            let sqlQuery = `SELECT * FROM hojas_de_vida WHERE idhojavida='${id}'`;
+            connection.sqlQuery(sqlQuery).then((result)=>{
+                resolve(result.rows);
+            }).catch((err) => {
+                reject(err);
             });
         });
     }
@@ -35,11 +57,13 @@ const hojaVida = (() => {
     function insertHojaVida(hojaVida) {
         return new Promise((resolve, reject) => {
             validateExists().then(() => {
-                let sqlQuery = 'INSERT INTO hoja_vida VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17) RETURNING idhojavida';
+                console.log("HOJA DE VIDA TABLA CREADA O EXISTENTE");
+                let sqlQuery = 'INSERT INTO hojas_de_vida VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17) RETURNING idhojavida';
                 let query = {
                     text: sqlQuery,
                     values: [
                         uuid.v1(),
+                        hojaVida.equipo,
                         hojaVida.tipo_riesgo,
                         hojaVida.tipo_funcion,
                         hojaVida.voltaje_maximo,
@@ -54,14 +78,14 @@ const hojaVida = (() => {
                         hojaVida.presion,
                         hojaVida.alimentacion,
                         hojaVida.adquisicion,
-                        hojaVida.uso,
-                        hojaVida.equipo
+                        hojaVida.uso
                     ]
                 };
 
                 connection.sqlQuery(query).then((res) => {
                     resolve(res);
                 }).catch((err) => {
+                    console.error("ERROR INSERTANDO", err);
                     reject(err);
                 });
             }).catch((err)=>{
@@ -72,7 +96,9 @@ const hojaVida = (() => {
     }
 
     return {
-        insertHojaVida: insertHojaVida
+        insertHojaVida: insertHojaVida,
+        getAll: getAll,
+        getHVbyID: getHVbyID
     }
 
 })();
