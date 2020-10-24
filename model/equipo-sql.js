@@ -3,7 +3,7 @@ const uuid = require('uuid');
 
 const equipo = (() => {
     const createTable = 'CREATE TABLE IF NOT EXISTS equipos (' +
-        'idequipo uuid DEFAULT PRIMARY KEY, ' +
+        'idequipo uuid PRIMARY KEY, ' +
         'nombre VARCHAR NOT NULL, ' +
         'codigo VARCHAR NOT NULL, ' +
         'serie VARCHAR NOT NULL, ' +
@@ -29,7 +29,7 @@ const equipo = (() => {
             connection.sqlQuery(createTable).then(() => {
                 resolve();
             }).catch((err) => {
-                reject();
+                reject(err);
             });
         });
     }

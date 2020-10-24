@@ -9,13 +9,13 @@
       <th scope="col">Hora del reporte</th>
     </thead>
     <tbody>
-      <tr *ngFor="let item of reportes">
-        <td>{{item.equipo.nombre}}</td>
-        <td>{{item.equipo.codigo}}</td>
+      <tr *ngFor="let item of errores">
+        <td>{{getEquipoById(item.equipoid).nombre}}</td>
+        <td>{{getEquipoById(item.equipoid).codigo}}</td>
         <td>{{item.observaciones}}</td>
-        <td>{{item.user.name}}</td>
-        <td>{{item.fechaReporte}}</td>
-        <td>{{item.horaReporte}}</td>
+        <td>{{getUserById(item.userid).name + ' ' + getUserById(item.userid).lastname}}</td>
+        <td>{{parseDate(item.fecha_reporte)}}</td>
+        <td>{{parseHour(item.fecha_reporte)}}</td>
       </tr>
     </tbody>
   </table>
