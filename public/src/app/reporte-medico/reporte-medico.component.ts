@@ -77,7 +77,7 @@ export class ReporteMedicoComponent implements OnInit {
   }
 
   validarReporte() {
-    if(this.getEquipoById(this.equipoSeleccionado) && this.reporte.observacion &&
+    if(this.getEquipoById(this.equipoSeleccionado) && this.reporte.observaciones &&
       this.usuarioSeleccionado && this.fechaReporte) {
         return true;
     }
@@ -95,7 +95,9 @@ export class ReporteMedicoComponent implements OnInit {
       this.reporte.userid = this.usuarioSeleccionado;
       this.reporte.equipoid = this.equipoSeleccionado;
       this.reporte.fecha_reporte = this.formatDate();
-      this.reporteService.addReporte(this.reporte);
+      this.reporteService.addReporte(this.reporte).subscribe(reporte => {
+        swal("REPORTE AGREGADO CORRECTAMENTE", reporte.id ,"success");
+      });;
     }
     
   }

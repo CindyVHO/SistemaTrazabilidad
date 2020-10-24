@@ -8,7 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class ReporteMedicoService {
 
-    private reporteMedicoUrl = 'api/error';  // URL to web api
+    private reporteMedicoUrl = 'api/errores';  // URL to web api
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
