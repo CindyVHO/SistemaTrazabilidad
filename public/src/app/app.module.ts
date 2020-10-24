@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import {
   MatFormFieldModule,
@@ -56,7 +56,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes,{ useHash: true }),
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule,

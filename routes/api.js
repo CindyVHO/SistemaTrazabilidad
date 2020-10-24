@@ -10,7 +10,7 @@ const rol = require('../model/rol-sql');
 const rutina = require('../model/rutina-sql');
 const user = require('../model/user-sql');
 
-router.post('/equipo', (req, res) => {
+router.post('/equipos', (req, res) => {
     var equipoIntro = req.body;
     equipo.insertEquipo(equipoIntro).then((response)=>{
         res.json({id:response.rows[0].idequipo});
@@ -20,8 +20,7 @@ router.post('/equipo', (req, res) => {
     });
 });
 
-router.get('/equipo', (req, res) => {
-    var equipoIntro = req.body;
+router.get('/equipos', (req, res) => {
     equipo.queryAll().then((response)=>{
         res.json({equipos:response});
     }).catch((err)=>{
@@ -30,7 +29,7 @@ router.get('/equipo', (req, res) => {
     });
 });
 
-router.get('/equipo/:id', (req, res) => {
+router.get('/equipos/:id', (req, res) => {
     var equipoid = req.params.id;
     equipo.queryEquipoById(equipoid).then((response)=>{
         res.json({equipos:response});

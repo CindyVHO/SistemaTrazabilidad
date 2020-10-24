@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
 import swal from 'sweetalert';
+import { ReporteMedicoService } from './reporte-medico.service';
 
 @Component({
   selector: 'app-reporte-medico',
@@ -10,6 +11,7 @@ import swal from 'sweetalert';
 })
 export class ReporteMedicoComponent implements OnInit {
 
+  reporte: any;
   fechaReporte = new Date();
   public form: FormGroup = new FormGroup({
     calculatedTime: new FormControl(''),
@@ -19,7 +21,7 @@ export class ReporteMedicoComponent implements OnInit {
   horaInicial;
   horaFinal;
   
-  constructor() { }
+  constructor(private reporteService: ReporteMedicoService) { }
 
   ngOnInit() {
   }
@@ -56,6 +58,9 @@ export class ReporteMedicoComponent implements OnInit {
   endHourChanged(horaFin, event) {
     this.horaFinal = horaFin.value;
     this.updateHoraTotal();
+  }
+
+  saveReporte() {
   }
 
   confirm(){
