@@ -13,15 +13,12 @@ import { HistoricoService } from '../historico/historico.service';
 export class ReporteMedicoComponent implements OnInit {
 
   equipos: any;
-  reporte: any;
+  reporte: any = {};
+  equipoSeleccionado: any;
   fechaReporte = new Date();
-  public form: FormGroup = new FormGroup({
-    calculatedTime: new FormControl(''),
-  });
+  myControl = new FormControl();
 
   duracionTotal = "00:00";
-  horaInicial;
-  horaFinal;
   
   constructor(private reporteService: ReporteMedicoService, private historicoService: HistoricoService) { }
 
@@ -32,42 +29,19 @@ export class ReporteMedicoComponent implements OnInit {
   getEquipos() {
     this.historicoService.getEquipos()
     .subscribe(equipos => {
-      this.equipos = equipos;
+      this.equipos = (<any>equipos).equipos;
     });
   }
 
-  updateHoraTotal() {
-    if(this.horaInicial && this.horaFinal) {
-      let horaI = parseInt(this.horaInicial.split(":")[0]),
-      minutoI = parseInt(this.horaInicial.split(":")[1]),
-      horaF = parseInt(this.horaFinal.split(":")[0]),
-      minutoF = parseInt(this.horaFinal.split(":")[1]);
-
-      if(minutoF < minutoI) {
-        minutoF += 60;
-        horaF = horaF >= 1 ? horaF-- : 23;
-      }
-
-      const minutoTotal = (minutoF - minutoI)%60,
-      horaTotal = Math.abs((horaF - horaI) + ((minutoF - minutoI)/60 > 1 ? (minutoF - minutoI)/60 : 0));
-      
-      this.duracionTotal = (horaTotal < 10 ? "0" + horaTotal: horaTotal) + ":" + 
-                              (minutoTotal < 10 ? "0" + minutoTotal : minutoTotal);
-    }
+  getEquipoById(id) {
+    let equipos = this.equipos || [];
+    return equipos.filter((equipo)=>{
+      return equipo.idequipo === id;
+    })[0] || {};
   }
 
   dateChanged(fecha, event) {
     console.log("DATE CHANGED", fecha.value);
-  }
-
-  initHourChanged(horaInicio, event) {
-    this.horaInicial = horaInicio.value;
-    this.updateHoraTotal();
-  }
-
-  endHourChanged(horaFin, event) {
-    this.horaFinal = horaFin.value;
-    this.updateHoraTotal();
   }
 
   saveReporte() {

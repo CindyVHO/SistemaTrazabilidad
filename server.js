@@ -6,7 +6,7 @@ const apiRouter = require('./routes/api');
 const cors = require('cors');
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public/dist')));
+app.use(express.static('public/dist/public'));
 
 app.use('/api', apiRouter);
 

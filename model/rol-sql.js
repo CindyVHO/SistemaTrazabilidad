@@ -7,6 +7,17 @@ const rol = (() => {
         'rol VARCHAR NOT NULL' +
         ');';
 
+    function getRolByName(rol) {
+        return new Promise((resolve, reject) => {
+            let sqlQuery = `SELECT * FROM roles WHERE rol like'%${rol}%'`;
+            connection.sqlQuery(sqlQuery).then((result)=>{
+                resolve(result.rows);
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+    }
+
     function getRolById(id) {
         return new Promise((resolve, reject) => {
             let sqlQuery = `SELECT * FROM roles WHERE idrol='${id}'`;
@@ -69,7 +80,8 @@ const rol = (() => {
     return {
         insertRol: insertRol,
         getRolById: getRolById,
-        getAllRoles: getAllRoles
+        getAllRoles: getAllRoles,
+        getRolByName: getRolByName
     }
 
 })();

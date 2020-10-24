@@ -184,6 +184,16 @@ router.get('/rol/:id', (req, res) => {
     });
 });
 
+router.get('/rol/name/:name', (req, res) => {
+    var rolid = req.params.name;
+    rol.getRolByName(rolid).then((response)=>{
+        res.json({roles:response});
+    }).catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
+});
+
 router.post('/rutinas', (req, res) => {
     var rutinaIntro = req.body;
     rutina.insertRutina(rutinaIntro).then((response)=>{
