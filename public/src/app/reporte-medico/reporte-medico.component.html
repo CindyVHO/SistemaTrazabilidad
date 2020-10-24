@@ -20,15 +20,13 @@
         <label class="col-form-label">Observación</label>
         <input type="text" [(ngModel)]="reporte.observacion" class="form-control" placeholder="Agregue detalle del incidente presentado" id="observacion">
       </div>
-      <div class="form-group col-md-12">
-        <label class="col-form-label">Nombre del médico o auxiliar que reporta</label>
-        <input type="text" class="form-control" placeholder="Medico o auxiliar" id="medico">
-        <mat-form-field>
-          <input type="text" placeholder="Nombre del Médico o auxiliar que reporta" matInput [formControl]="myControl"
+      <div class="form-group col-md-12 row">
+        <mat-form-field class="col-md-12">
+          <input class="form-control" type="text" placeholder="Nombre del Médico o auxiliar que reporta" matInput [formControl]="myControl"
                [matAutocomplete]="auto">
-             <mat-autocomplete #auto="matAutocomplete">
-               <mat-option *ngFor="let medico of medicos" [value]="option">
-                 {{medico.name + " " + medico.lastName}}
+             <mat-autocomplete #auto="matAutocomplete" [displayWith]="showUser" (optionSelected)="userNameSelected($event)">
+               <mat-option *ngFor="let medico of medicos" [value]="medico">
+                 {{medico.name + " " + medico.lastname}}
               </mat-option>
           </mat-autocomplete>
        </mat-form-field>
@@ -44,7 +42,7 @@
         </div>
       </div>
       <div class="col-md-12 button-wrapper">
-        <button type="button" class="btn btn-primary" (click)="confirm()">Guardar cambios</button>
+        <button [disabled]="!validarReporte()" type="button"  class="btn guardar-reporte btn-primary" (click)="saveReporte()">Guardar cambios</button>
         <button type="button" class="btn btn-secondary">Regresar a la lista de opciones</button>
       </div>
     </div>
