@@ -17,6 +17,10 @@ export class RegistroMantenimientoComponent implements OnInit {
   usuarioSeleccionado: any;
   ingenieros: any;
   myControl = new FormControl();
+  equipos: any;
+  equipoSeleccionado: any;
+  mantenimiento: any = {};
+  fechaMantenimiento = new Date();
 
   public form: FormGroup = new FormGroup({
     calculatedTime: new FormControl(''),
@@ -31,6 +35,8 @@ export class RegistroMantenimientoComponent implements OnInit {
     private loginService: LoginService) { }
 
   ngOnInit() {
+    this.getIngeniero();
+    this.getEquipos();
   }
 
   updateHoraTotal() {
@@ -88,6 +94,55 @@ export class RegistroMantenimientoComponent implements OnInit {
     });
   }
 
+  getEquipos() {
+    this.historicoService.getEquipos()
+      .subscribe(equipos => {
+        this.equipos = (<any>equipos).equipos;
+      });
+  }
+
+  getEquipoById(id) {
+    let equipos = this.equipos || [];
+    return equipos.filter((equipo) => {
+      return equipo.idequipo === id;
+    })[0] || {};
+  }
+
+  userNameSelected(evt) {
+    this.usuarioSeleccionado = evt.option && evt.option.value ? evt.option.value.iduser : null;
+  }
+
+  showUser(user: any) {
+    return user ? user.name + " " + user.lastname : "";
+  }
+
+  validarForm() {
+    if(this.usuarioSeleccionado && this.getEquipoById(this.equipoSeleccionado) && this.mantenimiento.ubicacion &&
+        this.mantenimiento.marca && this.mantenimiento.marca && this.mantenimiento.serie && this.mantenimiento.modelo &&
+        this.mantenimiento.tipoMantenimiento && this.mantenimiento.materialUsar && this.mantenimiento.diagnostico &&
+        this.mantenimiento.trabajosEjecutados && this.mantenimiento.observaciones && this.fechaMantenimiento) {
+        return true;
+    }
+
+    return false;
+  }
+
+  formatDate() {
+    return this.fechaMantenimiento.getFullYear() + '-' + (this.fechaMantenimiento.getMonth() + 1) + '-' + this.fechaMantenimiento.getDate() + 
+          ' ' + this.fechaMantenimiento.getHours() + ':' + this.fechaMantenimiento.getMinutes() + ':' + this.fechaMantenimiento.getSeconds();
+  }
+
+  saveMantenimiento() {
+    if(this.validarForm()) {
+      this.mantenimiento.userid = this.usuarioSeleccionado;
+      this.mantenimiento.equipoid = this.equipoSeleccionado;
+      this.mantenimiento.fecha_mantenimiento = this.formatDate();
+      this.registroMantenimientoService.addMantenimiento(this.mantenimiento).subscribe(mantenimiento => {
+        swal("mantenimiento AGREGADO CORRECTAMENTE", mantenimiento.id ,"success");
+      });
+    }
+    
+  }
 
   confirm(){
     swal("Bien hecho!", "El equipo ha sido registrado exitosamente.", "success");

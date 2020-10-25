@@ -13,4 +13,36 @@
             }
         }
     }
+
+    .mat-form-field-wrapper {
+        margin-top: 18px;
+    }
+    .mat-form-field-underline {
+        display: none;
+    }
+    .mat-form-field-autofill-control{
+        background-color: #FFF;
+    }
+    .mat-form-field-should-float {
+        .mat-form-field-label {
+            &.ng-star-inserted{
+                color: #545871;
+                font-size: 20px;
+            }
+        }
+    }
+    .mat-form-field-label {
+        line-height: 36px;
+        padding: 0 10px;
+    }
+    .button-wrapper {
+        text-align: center;
+        button {
+            margin: 10px;
+            &.guardar-reporte[disabled] {
+                background-color: #777;
+            }
+        }
+    }
+    
 }

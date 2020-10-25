@@ -17,30 +17,31 @@
        </mat-form-field>
       </div>
       <div class="form-group col-md-6">
-        <label class="col-form-label" for="nombreEquipo">Nombre del equipo</label>
-        <select id="nombreEquipo" class="form-control">
+        <label class="col-form-label">Nombre del equipo</label>
+        <select class="form-control" [(ngModel)]="equipoSeleccionado">
           <option value="0">Nombre del equipo</option>
+          <option *ngFor="let equipo of equipos" value="{{equipo.idequipo}}">{{equipo.nombre}}</option>
         </select>
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Marca</label>
-        <input disabled type="text" class="form-control" placeholder="Marca del equipo" id="marca">
+        <input disabled type="text" [(ngModel)]="mantenimiento.marca" value="{{getEquipoById(equipoSeleccionado).marca}}" class="form-control" placeholder="Marca del equipo" id="marca">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Ubicación del equipo</label>
-        <input disabled type="text" class="form-control" placeholder="Ubicación del equipo" id="ubicacion">
+        <input type="text" [(ngModel)]="mantenimiento.ubicacion" class="form-control" placeholder="Ubicación del equipo" id="ubicacion">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Serie</label>
-        <input disabled type="text" class="form-control" placeholder="Serie del equipo" id="serie">
+        <input disabled type="text" [(ngModel)]="mantenimiento.serie" value="{{getEquipoById(equipoSeleccionado).serie}}" class="form-control" placeholder="Serie del equipo" id="serie">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Modelo</label>
-        <input disabled type="text" class="form-control" placeholder="Modelo del equipo" id="modelo">
+        <input disabled type="text" [(ngModel)]="mantenimiento.modelo" value="{{getEquipoById(equipoSeleccionado).modelo}}" class="form-control" placeholder="Modelo del equipo" id="modelo">
       </div>
       <div class="form-group col-md-12">
         <label class="form-control-label">Tipo de Mantenimiento</label>
-        <select class="custom-select">
+        <select class="custom-select" [(ngModel)]="mantenimiento.tipoMantenimiento">
           <option selected="">Seleccione ... </option>
           <option value="Preventivo">Preventivo</option>
           <option value="Correctivo">Correctivo</option>
@@ -48,23 +49,23 @@
       </div>
       <div class="form-group col-md-12">
         <label class="col-form-label">Materiales a usar</label>
-        <input type="text" class="form-control" placeholder="Materiales a usar" id="meterial">
+        <input type="text" [(ngModel)]="mantenimiento.materialUsar" class="form-control" placeholder="Materiales a usar" id="meterial">
       </div>
       <div class="form-group col-md-12">
         <label class="col-form-label">Diagnóstico</label>
-        <input type="text" class="form-control" placeholder="Diagnóstico" id="diagnostico">
+        <input type="text" [(ngModel)]="mantenimiento.diagnostico" class="form-control" placeholder="Diagnóstico" id="diagnostico">
       </div>
       <div class="form-group col-md-12">
         <label class="col-form-label">Trabajos Ejecutados</label>
-        <input type="text" class="form-control" placeholder="Trabajos ejecutados" id="trejecutado">
+        <input type="text" [(ngModel)]="mantenimiento.trabajosEjecutados" class="form-control" placeholder="Trabajos ejecutados" id="trejecutado">
       </div>
       <div class="form-group col-md-12">
         <label class="col-form-label">Observaciones</label>
-        <input type="text" class="form-control" placeholder="Observaciones" id="observaciones">
+        <input type="text" [(ngModel)]="mantenimiento.observaciones" class="form-control" placeholder="Observaciones" id="observaciones">
       </div>
       <div class="time-pickers col-md-12 row">
         <div class="form-group col-md-3">
-          <mat-form-field class="form-group" appearance="fill">
+          <mat-form-field class="form-group" appearance="fill" [ngModel]="mantenimiento.fechaMantenimiento">
             <mat-label>Fecha</mat-label>
             <input matInput #fecha [matDatepicker]="date" (dateChange)="dateChanged(fecha, $event)">
             <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
@@ -72,14 +73,14 @@
           </mat-form-field>
         </div>
         <div class="form-group col-md-3">
-          <mat-form-field class="form-group" appearance="fill">
+          <mat-form-field class="form-group" appearance="fill" [ngModel]="mantenimiento.horaInicio">
             <mat-label>Hora Inicio</mat-label>
             <input matInput #horaInicio [matDatepicker]="startTime" type="time" placeholder="Hora de Inicio"
               (dateChange)="initHourChanged(horaInicio, $event)">
           </mat-form-field>
         </div>
         <div class="form-group col-md-3">
-          <mat-form-field class="form-group" appearance="fill">
+          <mat-form-field class="form-group" appearance="fill" [ngModel]="mantenimiento.horaFin">
             <mat-label>Hora Final</mat-label>
             <input matInput #horaFin [matDatepicker]="endTime" type="time" placeholder="Hora de Fin"
               (dateChange)="endHourChanged(horaFin, $event)">
@@ -93,7 +94,7 @@
         </div>
       </div>
       <div class="form-group col-md-12">
-        <label class="col-form-label">Firma Ingeniero</label>
+        <label class="col-form-label" [ngModel]="mantenimiento.firma">Firma Ingeniero</label>
         <input disabled [ngModel]="nombreIngeniero" type="text" class="form-control" placeholder="Ingeniero que realiza el reporte" id="firma">
       </div>
       <div>
