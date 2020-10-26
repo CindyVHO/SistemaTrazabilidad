@@ -1,0 +1,25 @@
+.reporte{
+    .card-container {
+        padding-top: 25vh;
+        .card {
+            height: 250px;
+            background-color: #66a9d8;
+            text-align: center;
+            cursor: pointer;
+            padding: 25px 0 0 0;
+            border-radius: 20px;
+            
+            &:hover {
+                background-color: #2A1F36;
+            }
+
+            .fas {
+                font-size: 6rem;
+            }
+
+            h4 {
+                margin-top: 25px;
+            }
+        }
+    }
+}

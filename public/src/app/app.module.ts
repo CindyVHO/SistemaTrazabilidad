@@ -25,6 +25,8 @@ import { ReporteMedicoComponent } from './reporte-medico/reporte-medico.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReporteMedicoVisualComponent } from './reporte-medico-visual/reporte-medico-visual.component';
 import { ListarEquiposComponent } from './listar-equipos/listar-equipos.component';
+import { ReporteComponent } from './reporte/reporte.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -36,7 +38,8 @@ const routes: Routes = [
   { path: 'registro-mantenimiento', component: RegistroMantenimientoComponent },
   { path: 'reporte-medico', component: ReporteMedicoComponent },
   { path: 'reporte-medico-visual', component: ReporteMedicoVisualComponent },
-  { path: 'listar-equipos', component: ListarEquiposComponent }
+  { path: 'listar-equipos', component: ListarEquiposComponent },
+  { path: 'reporte', component: ReporteComponent }
 ];
 
 @NgModule({
@@ -50,7 +53,8 @@ const routes: Routes = [
     RegistroMantenimientoComponent,
     ReporteMedicoComponent,
     ReporteMedicoVisualComponent,
-    ListarEquiposComponent
+    ListarEquiposComponent,
+    ReporteComponent
   ],
   imports: [
     BrowserModule,
