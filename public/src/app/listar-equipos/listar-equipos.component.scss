@@ -1,4 +1,11 @@
 .listar-equipos {
+    background-color: #f2f3f8;
+    .title{
+        text-align: center;
+        color: #2A1F36;
+        padding: 15px 0 15px 0;
+    }
+
     .red-alert {
         color: #000;
         font-size: 20px;
@@ -6,6 +13,13 @@
             animation-name: bulb-ilumination;
             animation-duration: 2s;
             animation-iteration-count: infinite;
+        }
+    }
+
+    .button-wrapper {
+        text-align: center;
+        button {
+            margin: 20px 15px;
         }
     }
 }

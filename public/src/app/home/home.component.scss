@@ -1,6 +1,13 @@
 .home {
     min-height: calc(100vh - 205px);
     max-height: calc(100vh - 205px);
+    background-color: #f2f3f8;
+
+    .title{
+        text-align: center;
+        color: #2A1F36;
+        padding: 15px 0 15px 0;
+    }
 
     .container {
         .card {
