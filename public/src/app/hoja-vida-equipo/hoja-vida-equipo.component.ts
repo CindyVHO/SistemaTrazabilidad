@@ -12,9 +12,18 @@ import { HojaVidaService } from '../hoja-vida-equipo/hoja-vida-equipo.service';
 export class HojaVidaEquipoComponent implements OnInit {
 
   equipos: any;
-  equipoSeleccionado: any;
-  hojaVida: any = {};
+  equipoSeleccionado: any = 0;
+  hojaVida: any = {
+    tipo_riesgo: 0,
+    tipo_funcion: 0,
+    alimentacion: 0,
+    adquisicion: 0,
+    fijo: 0,
+    movil: 0,
+    uso: 0
+  };
   fechaHojaVida = new Date();
+  fechaExpiracion = new Date();
 
   constructor(private hojaVidaService: HojaVidaService,
     private historicoService: HistoricoService) { }
@@ -39,13 +48,21 @@ export class HojaVidaEquipoComponent implements OnInit {
 
 
   dateChanged(fecha, event) {
+    this.fechaHojaVida = fecha.value;
+    this.hojaVida.fecha_instalacion = this.fechaHojaVida;
+    console.log("DATE CHANGED", fecha.value);
+  }
+
+  dateExpiredChanged(fecha, event) {
+    this.fechaExpiracion = fecha.value;
+    this.hojaVida.expiracion_garantia = this.fechaExpiracion;
     console.log("DATE CHANGED", fecha.value);
   }
 
   validarForm() {
-    if (Object.keys(this.hojaVida).length === 10 && this.equipoSeleccionado) {
+    if (Object.keys(this.hojaVida).length === 19 && this.equipoSeleccionado) {
       for (let item of Object.keys(this.hojaVida)) {
-        if (this.hojaVida[item] === "") {
+        if (this.hojaVida[item] === "" || this.hojaVida[item] === 0) {
           return false;
         }
       }
@@ -59,11 +76,11 @@ export class HojaVidaEquipoComponent implements OnInit {
       ' ' + this.fechaHojaVida.getHours() + ':' + this.fechaHojaVida.getMinutes() + ':' + this.fechaHojaVida.getSeconds();
   }
 
-  savehojaVida() {
+  saveHojaVida() {
     if (this.validarForm()) {
       this.hojaVida.equipoid = this.equipoSeleccionado;
       this.hojaVidaService.addHojaVida(this.hojaVida).subscribe(hojaVida => {
-        swal("hojaVida Agregado Correctamente", hojaVida.id, "success");
+        swal("Hoja de vida Agregada Correctamente", hojaVida.id, "success");
       });
     }
   }

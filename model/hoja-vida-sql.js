@@ -17,6 +17,8 @@ const hojaVida = (() => {
         'velocidad DECIMAL NOT NULL, ' +
         'capacidad DECIMAL NOT NULL, ' +
         'presion DECIMAL NOT NULL, ' +
+        'fecha_instalacion TIMESTAMP NOT NULL, ' +
+        'expiracion_garantia DECIMAL NOT NULL, ' +
         'alimentacion VARCHAR NOT NULL, ' +
         'adquisicion VARCHAR NOT NULL, ' +
         'fijo BOOLEAN NOT NULL, ' +
@@ -65,7 +67,7 @@ const hojaVida = (() => {
                     text: sqlQuery,
                     values: [
                         uuid.v1(),
-                        hojaVida.equipo,
+                        hojaVida.equipoid,
                         hojaVida.tipo_riesgo,
                         hojaVida.tipo_funcion,
                         hojaVida.voltaje_maximo,
