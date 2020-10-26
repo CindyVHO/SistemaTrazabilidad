@@ -1,8 +1,11 @@
 .registro-mantenimiento {
+    input.mat-input-element[type="text"] {
+        border: none;
+    }
     .time-pickers {
         > div {
             &.form-group {
-                height: 70px;
+                height: 90px;
                 margin: 0;
                 overflow: hidden;
             }
@@ -13,24 +16,40 @@
             }
         }
     }
-
-    .mat-form-field-wrapper {
-        margin-top: 18px;
-    }
+    
     .mat-form-field-underline {
         display: none;
     }
     .mat-form-field-autofill-control{
         background-color: #FFF;
     }
+
+    .mat-form-field-label-wrapper {
+        overflow: visible;
+    }
+
+    .engineer-field {
+        margin-top: 18px;
+        &.mat-form-field-should-float {
+            .mat-form-field-label {
+                &.ng-star-inserted{
+                    color: #545871;
+                    font-size: 20px;
+                    transform: translateY(-1.7em) scale(.75) perspective(100px) translateZ(.001px) !important;
+                }
+            }
+        }
+    }
+
     .mat-form-field-should-float {
         .mat-form-field-label {
             &.ng-star-inserted{
                 color: #545871;
-                font-size: 20px;
+                transform: translateY(-1.3em) scale(.75) perspective(100px) translateZ(.001px) !important;
             }
         }
     }
+    
     .mat-form-field-label {
         line-height: 36px;
         padding: 0 10px;

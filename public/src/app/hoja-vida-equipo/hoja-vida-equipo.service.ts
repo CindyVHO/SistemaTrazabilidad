@@ -6,7 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 
 @Injectable({ providedIn: 'root' })
-export class LoginService {
+export class HojaVidaService {
 
     private hojaVidaUrl = 'api/hoja-vida';  // URL to web api
 

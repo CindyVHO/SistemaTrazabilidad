@@ -9,6 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class HistoricoService {
 
     private historicoUrl = 'api/equipos';  // URL to web api
+    private errorEquipoUrl = 'api/equipos/errores/get';
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,6 +24,14 @@ export class HistoricoService {
             .pipe(
                 tap(_ => this.log('fetched equipos')),
                 catchError(this.handleError<any[]>('getEquipos', []))
+            );
+    }
+
+    getEquiposError(): Observable<any[]> {
+        return this.http.get<any[]>(this.errorEquipoUrl)
+            .pipe(
+                tap(_ => this.log('fetched equipos errores')),
+                catchError(this.handleError<any[]>('getEquiposErrores', []))
             );
     }
 

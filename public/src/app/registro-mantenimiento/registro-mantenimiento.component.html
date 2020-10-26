@@ -6,7 +6,7 @@
   <div class="col-md-9 right-content">
     <div class="row">      
       <div class="form-group col-md-6">
-        <mat-form-field class="col-md-12">
+        <mat-form-field class="col-md-12 engineer-field">
           <input class="form-control" type="text" placeholder="Nombre del ingeniero" matInput [formControl]="myControl"
                [matAutocomplete]="auto">
              <mat-autocomplete #auto="matAutocomplete" [displayWith]="showUser" (optionSelected)="userNameSelected($event)">
@@ -25,23 +25,23 @@
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Marca</label>
-        <input disabled type="text" [(ngModel)]="mantenimiento.marca" value="{{getEquipoById(equipoSeleccionado).marca}}" class="form-control" placeholder="Marca del equipo" id="marca">
+        <input disabled type="text" [(ngModel)]="marca" value="{{getEquipoById(equipoSeleccionado).marca}}" class="form-control" placeholder="Marca del equipo" id="marca">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Ubicación del equipo</label>
-        <input type="text" [(ngModel)]="mantenimiento.ubicacion" class="form-control" placeholder="Ubicación del equipo" id="ubicacion">
+        <input type="text" [(ngModel)]="mantenimiento.ubicacion_equipo" class="form-control" placeholder="Ubicación del equipo" id="ubicacion">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Serie</label>
-        <input disabled type="text" [(ngModel)]="mantenimiento.serie" value="{{getEquipoById(equipoSeleccionado).serie}}" class="form-control" placeholder="Serie del equipo" id="serie">
+        <input disabled type="text" [(ngModel)]="serie" value="{{getEquipoById(equipoSeleccionado).serie}}" class="form-control" placeholder="Serie del equipo" id="serie">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Modelo</label>
-        <input disabled type="text" [(ngModel)]="mantenimiento.modelo" value="{{getEquipoById(equipoSeleccionado).modelo}}" class="form-control" placeholder="Modelo del equipo" id="modelo">
+        <input disabled type="text" [(ngModel)]="modelo" value="{{getEquipoById(equipoSeleccionado).modelo}}" class="form-control" placeholder="Modelo del equipo" id="modelo">
       </div>
       <div class="form-group col-md-12">
-        <label class="form-control-label">Tipo de Mantenimiento</label>
-        <select class="custom-select" [(ngModel)]="mantenimiento.tipoMantenimiento">
+        <label class="col-form-label">Tipo de Mantenimiento</label>
+        <select class="form-control" [(ngModel)]="mantenimiento.tipo_mantenimiento">
           <option selected="">Seleccione ... </option>
           <option value="Preventivo">Preventivo</option>
           <option value="Correctivo">Correctivo</option>
@@ -49,7 +49,7 @@
       </div>
       <div class="form-group col-md-12">
         <label class="col-form-label">Materiales a usar</label>
-        <input type="text" [(ngModel)]="mantenimiento.materialUsar" class="form-control" placeholder="Materiales a usar" id="meterial">
+        <input type="text" [(ngModel)]="mantenimiento.material" class="form-control" placeholder="Materiales a usar" id="meterial">
       </div>
       <div class="form-group col-md-12">
         <label class="col-form-label">Diagnóstico</label>
@@ -57,15 +57,15 @@
       </div>
       <div class="form-group col-md-12">
         <label class="col-form-label">Trabajos Ejecutados</label>
-        <input type="text" [(ngModel)]="mantenimiento.trabajosEjecutados" class="form-control" placeholder="Trabajos ejecutados" id="trejecutado">
+        <input type="text" [(ngModel)]="mantenimiento.trabajo_ejecutado" class="form-control" placeholder="Trabajos ejecutados" id="trejecutado">
       </div>
       <div class="form-group col-md-12">
         <label class="col-form-label">Observaciones</label>
-        <input type="text" [(ngModel)]="mantenimiento.observaciones" class="form-control" placeholder="Observaciones" id="observaciones">
+        <input type="text" [(ngModel)]="mantenimiento.observacion_final" class="form-control" placeholder="Observaciones" id="observaciones">
       </div>
       <div class="time-pickers col-md-12 row">
         <div class="form-group col-md-3">
-          <mat-form-field class="form-group" appearance="fill" [ngModel]="mantenimiento.fechaMantenimiento">
+          <mat-form-field class="form-group" appearance="fill">
             <mat-label>Fecha</mat-label>
             <input matInput #fecha [matDatepicker]="date" (dateChange)="dateChanged(fecha, $event)">
             <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
@@ -73,14 +73,14 @@
           </mat-form-field>
         </div>
         <div class="form-group col-md-3">
-          <mat-form-field class="form-group" appearance="fill" [ngModel]="mantenimiento.horaInicio">
+          <mat-form-field class="form-group" appearance="fill" >
             <mat-label>Hora Inicio</mat-label>
             <input matInput #horaInicio [matDatepicker]="startTime" type="time" placeholder="Hora de Inicio"
               (dateChange)="initHourChanged(horaInicio, $event)">
           </mat-form-field>
         </div>
         <div class="form-group col-md-3">
-          <mat-form-field class="form-group" appearance="fill" [ngModel]="mantenimiento.horaFin">
+          <mat-form-field class="form-group" appearance="fill">
             <mat-label>Hora Final</mat-label>
             <input matInput #horaFin [matDatepicker]="endTime" type="time" placeholder="Hora de Fin"
               (dateChange)="endHourChanged(horaFin, $event)">
@@ -89,16 +89,16 @@
         <div class="form-group col-md-3">
           <mat-form-field class="form-group" appearance="fill">
             <mat-label>Duración Total</mat-label>
-            <input matInput [(ngModel)]="duracionTotal" disabled type="text" placeholder="Duración Total">
+            <input matInput disabled type="text" placeholder="Duración Total" [(ngModel)]="duracionTotal">
           </mat-form-field>
         </div>
       </div>
       <div class="form-group col-md-12">
-        <label class="col-form-label" [ngModel]="mantenimiento.firma">Firma Ingeniero</label>
-        <input disabled [ngModel]="nombreIngeniero" type="text" class="form-control" placeholder="Ingeniero que realiza el reporte" id="firma">
+        <label class="col-form-label">Firma Ingeniero</label>
+        <input disabled value= "{{usuarioSeleccionado ? (usuarioSeleccionado.name + ' ' + usuarioSeleccionado.lastname) : ''}}" type="text" class="form-control" id="firma">
       </div>
-      <div>
-        <button type="button" class="btn btn-primary" (click)="confirm()">Guardar cambios</button>
+      <div class="col-md-12 button-wrapper">
+        <button type="button" [disabled]="!validarForm()" class="btn guardar-reporte btn-primary" (click)="saveMantenimiento()">Guardar cambios</button>
         <button type="button" routerlink="/home" class="btn btn-secondary">Regresar a la lista de opciones</button>
       </div>
     </div>

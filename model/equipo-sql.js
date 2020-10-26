@@ -1,5 +1,6 @@
 const connection = require('./client');
 const uuid = require('uuid');
+const { resolve } = require('path');
 
 const equipo = (() => {
     const createTable = 'CREATE TABLE IF NOT EXISTS equipos (' +
@@ -37,7 +38,7 @@ const equipo = (() => {
     function queryAll() {
         return new Promise((resolve, reject) => {
             let sqlQuery = `SELECT * FROM equipos`;
-            connection.sqlQuery(sqlQuery).then((result)=>{
+            connection.sqlQuery(sqlQuery).then((result) => {
                 resolve(result.rows);
             }).catch((err) => {
                 reject(err);
@@ -48,7 +49,7 @@ const equipo = (() => {
     function queryEquipoById(id) {
         return new Promise((resolve, reject) => {
             let sqlQuery = `SELECT * FROM equipos WHERE idequipo='${id}'`;
-            connection.sqlQuery(sqlQuery).then((result)=>{
+            connection.sqlQuery(sqlQuery).then((result) => {
                 resolve(result.rows);
             }).catch((err) => {
                 reject(err);
@@ -90,17 +91,30 @@ const equipo = (() => {
                 }).catch((err) => {
                     reject(err);
                 });
-            }).catch((err)=>{
+            }).catch((err) => {
                 reject(err);
             });
 
         });
     }
 
+    function errorEquipo() {
+        console.log("ERROR EQUIPO");
+        return new Promise((resolve, reject) => {
+            let queryError = "SELECT * FROM ERRORES E, EQUIPOS EQ WHERE E.equipoid = EQ.idequipo;";
+            connection.sqlQuery(queryError).then((res) => {
+                resolve(res);
+            }).catch((err) => {
+                reject(err);
+            });
+        })
+    }
+
     return {
         insertEquipo: insertEquipo,
         queryEquipoById: queryEquipoById,
-        queryAll: queryAll
+        queryAll: queryAll,
+        errorEquipo: errorEquipo
     }
 
 })();

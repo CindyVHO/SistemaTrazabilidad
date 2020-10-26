@@ -1,5 +1,16 @@
 .listar-equipos {
     .red-alert {
-        color: #F00;
+        color: #000;
+        font-size: 20px;
+        &.iluminate {
+            animation-name: bulb-ilumination;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
     }
 }
+
+@keyframes bulb-ilumination {
+    from {color: red;}
+    to {color: yellow;}
+  }

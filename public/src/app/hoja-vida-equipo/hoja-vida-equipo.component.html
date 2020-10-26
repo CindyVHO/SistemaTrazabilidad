@@ -6,9 +6,16 @@
   <div class="col-md-9 right-content">
     <p>Clasificación del equipo</p>
     <div class="row">
+      <div class="form-group col-md-12">
+        <label class="col-form-label">Nombre del equipo</label>
+        <select class="form-control" [(ngModel)]="equipoSeleccionado">
+          <option value="0">Nombre del equipo</option>
+          <option *ngFor="let equipo of equipos" value="{{equipo.idequipo}}">{{equipo.nombre}}</option>
+        </select>
+      </div>
       <div class="form-group col-md-6">
         <label class="form-control-label">Según el riesgo</label>
-        <select class="custom-select">
+        <select class="custom-select" (ngModel)]="hojaVida.tipo_riesgo">
           <option selected="">Seleccione ... </option>
           <option value="1">I</option>
           <option value="2A">IIA</option>
@@ -18,7 +25,7 @@
       </div>
       <div class="form-group col-md-6">
         <label class="form-control-label">Según la función</label>
-        <select class="custom-select">
+        <select class="custom-select" (ngModel)]="hojaVida.tipo_funcion">
           <option selected="">Seleccione ...</option>
           <option value="Diagnostico">Diagnóstico</option>
           <option value="AyR">Asistencia y rehabilitación</option>
@@ -32,43 +39,43 @@
     <div class="row">
       <div class="form-group col-md-6">
         <label class="col-form-label">Voltaje máximo</label>
-        <input type="text" class="form-control" placeholder="Valor numerico en voltios" id="volmax">
+        <input type="text" class="form-control" (ngModel)]="hojaVida.voltaje_maximo" placeholder="Valor numerico en voltios" id="volmax">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Voltaje minimo</label>
-        <input type="text" class="form-control" placeholder="Valor numerico en voltios" id="volmin">
+        <input type="text" class="form-control" (ngModel)]="hojaVida.voltaje_minimo" placeholder="Valor numerico en voltios" id="volmin">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Corriente máxima</label>
-        <input type="text" class="form-control" placeholder="Valor numerico en amperios" id="corrmax">
+        <input type="text" class="form-control" (ngModel)]="hojaVida.corriente_maxima" placeholder="Valor numerico en amperios" id="corrmax">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Corriente mínima</label>
-        <input type="text" class="form-control" placeholder="Valor numerico en amperios" id="corrmin">
+        <input type="text" class="form-control" (ngModel)]="hojaVida.corriente_minima" placeholder="Valor numerico en amperios" id="corrmin">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Potencia</label>
-        <input type="text" class="form-control" placeholder="Valor numerico en watios" id="potencia">
+        <input type="text" class="form-control" (ngModel)]="hojaVida.potencia" placeholder="Valor numerico en watios" id="potencia">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Frecuencia</label>
-        <input type="text" class="form-control" placeholder="Valor numerico en hertz" id="frecuencia">
+        <input type="text" class="form-control" (ngModel)]="hojaVida.frecuencia" placeholder="Valor numerico en hertz" id="frecuencia">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Temperatura</label>
-        <input type="text" class="form-control" placeholder="Valor numerico en C" id="temperatura">
+        <input type="text" class="form-control" (ngModel)]="hojaVida.temperatura" placeholder="Valor numerico en C" id="temperatura">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Velocidad</label>
-        <input type="text" class="form-control" placeholder="Valor numerico en m/s" id="velocidad">
+        <input type="text" class="form-control" (ngModel)]="hojaVida.velocidad" placeholder="Valor numerico en m/s" id="velocidad">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Capacidad</label>
-        <input type="text" class="form-control" placeholder="Valor numerico en litros" id="capacidad">
+        <input type="text" class="form-control" (ngModel)]="hojaVida.capacidad" placeholder="Valor numerico en litros" id="capacidad">
       </div>
       <div class="form-group col-md-6">
         <label class="col-form-label">Presión</label>
-        <input type="text" class="form-control" placeholder="Valor numerico en pascales" id="presion">
+        <input type="text" class="form-control" (ngModel)]="hojaVida.presion" placeholder="Valor numerico en pascales" id="presion">
       </div>
     </div>
   
@@ -76,7 +83,7 @@
     <div class="row">
       <div class="form-group col-md-10">
         <label class="form-control-label">¿Con qué se alimenta el equipo?</label>
-        <select class="custom-select">
+        <select class="custom-select" (ngModel)]="hojaVida.alimentacion">
           <option selected="">Seleccione ... </option>
           <option value="H">Hidráulico</option>
           <option value="A">Aire</option>
@@ -92,8 +99,8 @@
     <div class="row">
       <div class="form-group col-md-10">
         <label class="form-control-label">¿Cómo fue adquirido el equipo por la IPS?</label>
-        <select class="custom-select">
-          <option selected="">Seleccione ... </option>
+        <select class="custom-select"(ngModel)]="hojaVida.adquisicion">
+          <option selected="" >Seleccione ... </option>
           <option value="CD">Compra directa</option>
           <option value="D">Donación</option>
           <option value="L">Leasing</option>
@@ -120,7 +127,7 @@
       </div>
       <div class="form-group col-md-6">
         <label class="form-control-label">¿Equipo fijo?</label>
-        <select class="custom-select">
+        <select class="custom-select" (ngModel)]="hojaVida.fijo">
           <option selected="">Seleccione ... </option>
           <option value="Si">SI</option>
           <option value="No">NO</option>
@@ -128,7 +135,7 @@
       </div>
       <div class="form-group col-md-6">
         <label class="form-control-label">¿Equipo móvil?</label>
-        <select class="custom-select">
+        <select class="custom-select" (ngModel)]="hojaVida.movil">
           <option selected="">Seleccione ... </option>
           <option value="Si">SI</option>
           <option value="No">NO</option>
@@ -140,7 +147,7 @@
     <div class="row">
       <div class="form-group col-md-6">
         <label class="form-control-label">¿Qué uso se le dará al equipo dentro de la IPS?</label>
-        <select class="custom-select">
+        <select class="custom-select" (ngModel)]="hojaVida.uso">
           <option selected="">Seleccione ... </option>
           <option value="Si">Médico</option>
           <option value="No">Básico</option>

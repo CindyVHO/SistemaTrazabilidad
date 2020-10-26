@@ -39,6 +39,15 @@ router.get('/equipos/:id', (req, res) => {
     });
 });
 
+router.get('/equipos/errores/get', (req, res) => {
+    equipo.errorEquipo().then((response)=>{
+        res.json({equipos:response.rows});
+    }).catch((err)=>{
+        res.status(500);
+        res.send(err);
+    });
+});
+
 router.post('/componentes', (req, res) => {
     var componenteIntro = req.body;
     componente.insertComponente(componenteIntro).then((response)=>{

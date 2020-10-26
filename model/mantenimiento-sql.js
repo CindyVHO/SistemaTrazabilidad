@@ -5,7 +5,7 @@ const mantenimiento = (() => {
     const createTable = 'CREATE TABLE IF NOT EXISTS mantenimientos (' +
         'idmantenimiento uuid PRIMARY KEY, ' +
         'userid uuid NOT NULL, ' +
-        'equipo uuid NOT NULL, ' +
+        'equipoid uuid NOT NULL, ' +
         'ubicacion_equipo VARCHAR NOT NULL, ' +
         'tipo_mantenimiento VARCHAR NOT NULL, ' +
         'material VARCHAR NOT NULL, ' +
@@ -58,8 +58,8 @@ const mantenimiento = (() => {
                     text: sqlQuery,
                     values: [
                         uuid.v1(),
-                        mantenimiento.user,
-                        mantenimiento.equipo,
+                        mantenimiento.userid,
+                        mantenimiento.equipoid,
                         mantenimiento.ubicacion_equipo,
                         mantenimiento.tipo_mantenimiento,
                         mantenimiento.material,

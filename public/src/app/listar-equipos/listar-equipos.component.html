@@ -1,4 +1,7 @@
 <div class="listar-equipos table-striped">
+  <h2>
+    Equipo y su seguimiento 
+  </h2>
   <table class="table">
     <thead class="thead-dark">
       <th scope="col">Nombre del equipo</th>
@@ -16,7 +19,7 @@
         <td>{{equipo.marca}}</td>
         <td>{{equipo.modelo}}</td>
         <td>
-          <i class="fas fa-lightbulb red-alert"></i>
+          <i class="fas fa-lightbulb red-alert"  [ngClass]="{'iluminate':equipoHasError(equipo.idequipo)}" ></i>
         </td>
       </tr>
     </tbody>

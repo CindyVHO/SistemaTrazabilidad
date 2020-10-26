@@ -19,6 +19,8 @@ const hojaVida = (() => {
         'presion DECIMAL NOT NULL, ' +
         'alimentacion VARCHAR NOT NULL, ' +
         'adquisicion VARCHAR NOT NULL, ' +
+        'fijo BOOLEAN NOT NULL, ' +
+        'movil BOOLEAN NOT NULL, ' +
         'uso VARCHAR NOT NULL ' +
         ');';
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup} from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import swal from 'sweetalert';
 import { RegistroMantenimientoService } from './registro-mantenimiento.service';
 import { HistoricoService } from '../historico/historico.service';
@@ -12,7 +12,7 @@ import { LoginService } from '../login/login.service';
   encapsulation: ViewEncapsulation.None
 })
 export class RegistroMantenimientoComponent implements OnInit {
-  nombreIngeniero:String = "";
+  nombreIngeniero: String = "";
   roles: any = {};
   usuarioSeleccionado: any;
   ingenieros: any;
@@ -40,58 +40,61 @@ export class RegistroMantenimientoComponent implements OnInit {
   }
 
   updateHoraTotal() {
-    if(this.horaInicial && this.horaFinal) {
+    if (this.horaInicial && this.horaFinal) {
       let horaI = parseInt(this.horaInicial.split(":")[0]),
-      minutoI = parseInt(this.horaInicial.split(":")[1]),
-      horaF = parseInt(this.horaFinal.split(":")[0]),
-      minutoF = parseInt(this.horaFinal.split(":")[1]);
+        minutoI = parseInt(this.horaInicial.split(":")[1]),
+        horaF = parseInt(this.horaFinal.split(":")[0]),
+        minutoF = parseInt(this.horaFinal.split(":")[1]);
 
-      if(minutoF < minutoI) {
+      if (minutoF < minutoI) {
         minutoF += 60;
         horaF = horaF >= 1 ? horaF-- : 23;
       }
 
-      const minutoTotal = (minutoF - minutoI)%60,
-      horaTotal = Math.abs((horaF - horaI) + ((minutoF - minutoI)/60 > 1 ? (minutoF - minutoI)/60 : 0));
-      
-      this.duracionTotal = (horaTotal < 10 ? "0" + horaTotal: horaTotal) + ":" + 
-                              (minutoTotal < 10 ? "0" + minutoTotal : minutoTotal);
+      const minutoTotal = (minutoF - minutoI) % 60,
+        horaTotal = Math.abs((horaF - horaI) + ((minutoF - minutoI) / 60 > 1 ? (minutoF - minutoI) / 60 : 0));
+
+      this.duracionTotal = (horaTotal < 10 ? "0" + horaTotal : horaTotal) + ":" +
+        (minutoTotal < 10 ? "0" + minutoTotal : minutoTotal);
     }
   }
 
   dateChanged(fecha, event) {
-    console.log("DATE CHANGED", fecha.value);
+    this.fechaMantenimiento = fecha.value;
+    this.mantenimiento.fecha = this.fechaMantenimiento;
   }
 
   initHourChanged(horaInicio, event) {
     this.horaInicial = horaInicio.value;
+    this.mantenimiento.hora_inicio = this.fechaMantenimiento + " " + this.horaInicial;
     this.updateHoraTotal();
   }
 
   endHourChanged(horaFin, event) {
     this.horaFinal = horaFin.value;
+    this.mantenimiento.hora_fin = this.fechaMantenimiento + " " + this.horaFinal;
     this.updateHoraTotal();
   }
 
   async getRoles() {
     return this.loginService.getRoles()
-    .toPromise().then(roles => {
+      .toPromise().then(roles => {
         this.roles = (<any>roles).roles;
-    });
+      });
   }
 
   async getIngeniero() {
     await this.getRoles();
-    const rolIngeniero = this.roles.filter((rol)=>{
+    const rolIngeniero = this.roles.filter((rol) => {
       return rol.rol === "IngenieroBiomedico";
     })[0];
 
     this.loginService.getUsers()
-    .subscribe(usuarios => {
-      this.ingenieros = (<any>usuarios).users.filter((user)=>{
-        return user.rol === rolIngeniero.idrol;
+      .subscribe(usuarios => {
+        this.ingenieros = (<any>usuarios).users.filter((user) => {
+          return user.rol === rolIngeniero.idrol;
+        });
       });
-    });
   }
 
   getEquipos() {
@@ -109,7 +112,8 @@ export class RegistroMantenimientoComponent implements OnInit {
   }
 
   userNameSelected(evt) {
-    this.usuarioSeleccionado = evt.option && evt.option.value ? evt.option.value.iduser : null;
+    this.usuarioSeleccionado = evt.option && evt.option.value ? evt.option.value : null;
+    this.mantenimiento.firma = this.usuarioSeleccionado.name + ' ' + this.usuarioSeleccionado.lastname;
   }
 
   showUser(user: any) {
@@ -117,34 +121,33 @@ export class RegistroMantenimientoComponent implements OnInit {
   }
 
   validarForm() {
-    if(this.usuarioSeleccionado && this.getEquipoById(this.equipoSeleccionado) && this.mantenimiento.ubicacion &&
-        this.mantenimiento.marca && this.mantenimiento.marca && this.mantenimiento.serie && this.mantenimiento.modelo &&
-        this.mantenimiento.tipoMantenimiento && this.mantenimiento.materialUsar && this.mantenimiento.diagnostico &&
-        this.mantenimiento.trabajosEjecutados && this.mantenimiento.observaciones && this.fechaMantenimiento) {
-        return true;
+    if (Object.keys(this.mantenimiento).length === 10 && this.equipoSeleccionado && this.usuarioSeleccionado) {
+      for(let item of Object.keys(this.mantenimiento)){
+        if(this.mantenimiento[item] === ""){
+          return false;
+        }
+      }
+      return true;
     }
-
     return false;
   }
 
   formatDate() {
-    return this.fechaMantenimiento.getFullYear() + '-' + (this.fechaMantenimiento.getMonth() + 1) + '-' + this.fechaMantenimiento.getDate() + 
-          ' ' + this.fechaMantenimiento.getHours() + ':' + this.fechaMantenimiento.getMinutes() + ':' + this.fechaMantenimiento.getSeconds();
+    return this.fechaMantenimiento.getFullYear() + '-' + (this.fechaMantenimiento.getMonth() + 1) + '-' + this.fechaMantenimiento.getDate() +
+      ' ' + this.fechaMantenimiento.getHours() + ':' + this.fechaMantenimiento.getMinutes() + ':' + this.fechaMantenimiento.getSeconds();
   }
 
   saveMantenimiento() {
-    if(this.validarForm()) {
-      this.mantenimiento.userid = this.usuarioSeleccionado;
+    if (this.validarForm()) {
+      this.mantenimiento.userid = this.usuarioSeleccionado.iduser;
       this.mantenimiento.equipoid = this.equipoSeleccionado;
-      this.mantenimiento.fecha_mantenimiento = this.formatDate();
       this.registroMantenimientoService.addMantenimiento(this.mantenimiento).subscribe(mantenimiento => {
-        swal("mantenimiento AGREGADO CORRECTAMENTE", mantenimiento.id ,"success");
+        swal("Mantenimiento Agregado Correctamente", mantenimiento.id, "success");
       });
     }
-    
   }
 
-  confirm(){
+  confirm() {
     swal("Bien hecho!", "El equipo ha sido registrado exitosamente.", "success");
   }
 
