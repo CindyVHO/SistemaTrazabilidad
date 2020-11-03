@@ -5,6 +5,12 @@ const hojaVida = (() => {
     const createTable = 'CREATE TABLE IF NOT EXISTS hojas_de_vida (' +
         'idhojavida uuid PRIMARY KEY, ' +
         'equipo uuid NOT NULL, ' +
+        'reg_sanitario BOOLEAN NOT NULL, '+
+        'num_reg_sanitario VARCHAR NOT NULL, '+
+        'reg_invima BOOLEAN NOT NULL, '+
+        'num_reg_invima VARCHAR NOT NULL, '+
+        'reg_importacion BOOLEAN NOT NULL, '+
+        'num_reg_importacion VARCHAR NOT NULL, '+
         'tipo_riesgo VARCHAR NOT NULL, ' +
         'tipo_funcion VARCHAR NOT NULL, ' +
         'voltaje_maximo DECIMAL NOT NULL, ' +
@@ -62,12 +68,18 @@ const hojaVida = (() => {
         return new Promise((resolve, reject) => {
             validateExists().then(() => {
                 console.log("HOJA DE VIDA TABLA CREADA O EXISTENTE");
-                let sqlQuery = 'INSERT INTO hojas_de_vida VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17) RETURNING idhojavida';
+                let sqlQuery = 'INSERT INTO hojas_de_vida VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23) RETURNING idhojavida';
                 let query = {
                     text: sqlQuery,
                     values: [
                         uuid.v1(),
                         hojaVida.equipoid,
+                        hojaVida.reg_sanitario,
+                        hojaVida.num_reg_sanitario,
+                        hojaVida.reg_invima,
+                        hojaVida.num_reg_invima,
+                        hojaVida.reg_importacion,
+                        hojaVida.num_reg_importacion,
                         hojaVida.tipo_riesgo,
                         hojaVida.tipo_funcion,
                         hojaVida.voltaje_maximo,

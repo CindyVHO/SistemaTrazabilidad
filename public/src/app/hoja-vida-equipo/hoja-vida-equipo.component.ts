@@ -14,6 +14,9 @@ export class HojaVidaEquipoComponent implements OnInit {
   equipos: any;
   equipoSeleccionado: any = 0;
   hojaVida: any = {
+    reg_sanitario: 0,
+    reg_invima: 0,
+    reg_importacion: 0,
     tipo_riesgo: 0,
     tipo_funcion: 0,
     alimentacion: 0,
